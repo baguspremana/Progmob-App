@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_login"
+        android:icon="@drawable/ic_assignment_ind"
+        android:title="Login"
+        />
+
+    <item
+        android:id="@+id/nav_signUp"
+        android:icon="@drawable/ic_person_add"
+        android:title="Sign Up"
+        />
+
+    <item
+        android:id="@+id/nav_faq"
+        android:icon="@drawable/ic_question_answer"
+        android:title="FAQ"
+        />
+
+</menu>

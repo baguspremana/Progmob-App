@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:id="@+id/layout_input"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/bg_white"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo"
+                android:layout_width="165dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:text="Registrasi Akun"
+                android:id="@+id/signUp"
+                android:layout_marginBottom="5dp"
+                style="@style/judul"/>
+
+            <TextView
+                android:text="Nama"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/etname"
+                android:drawableRight="@drawable/ic_perm"
+                android:hint="Input Nama Anda"
+                style="@style/etStyle"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="E-Mail"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/etEmail"
+                android:drawableRight="@drawable/ic_mail"
+                android:inputType="textEmailAddress"
+                android:hint="Input Alamat E-Mail Anda"
+                style="@style/etStyle"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Password"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/etPassword"
+                android:inputType="textPassword"
+                android:drawableRight="@drawable/ic_https_black_24dp"
+                android:hint="Input Password"
+                style="@style/etStyle"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Konfirmasi Password"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/etPasswordConfirmation"
+                android:inputType="textPassword"
+                android:drawableRight="@drawable/ic_https_black_24dp"
+                android:hint="Konfirmasi Password"
+                style="@style/etStyle"/>
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/btnSignUp"
+                android:text="Sign Up"
+                style="@style/btnStyle"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
