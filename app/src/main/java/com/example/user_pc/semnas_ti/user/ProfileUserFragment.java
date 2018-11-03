@@ -1,4 +1,4 @@
-package com.example.user_pc.semnas_ti.auth;
+package com.example.user_pc.semnas_ti.user;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import com.example.user_pc.semnas_ti.R;
 
-public class SignUpFragment extends Fragment {
+public class ProfileUserFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sign_up, container, false);
+        return inflater.inflate(R.layout.fragment_profile_user, container, false);
     }
 }

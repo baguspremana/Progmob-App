@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="340dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/bg_gradient"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_profile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/cute_profile"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center_horizontal"
+                android:elevation="2dp"/>
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agnes"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="270dp"
+            android:background="@drawable/et_bg"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/editProfile"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:src="@drawable/ic_mode_edit"/>
+
+            <ImageView
+                android:id="@+id/logoutApp"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:src="@drawable/ic_exit_to_app"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/emailProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_mail"/>
+        <TextView
+            android:id="@+id/tvEmailProfile"
+            style="@style/tvStyle"
+            android:text="dummy@mail.com"
+            android:layout_toRightOf="@id/emailProfile"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:id="@+id/contactProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_call"
+            android:layout_below="@id/emailProfile"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/tvContactProfile"
+            style="@style/tvStyle"
+            android:text="0878654321902"
+            android:layout_toRightOf="@id/contactProfile"
+            android:layout_alignBottom="@id/contactProfile"
+            android:layout_alignLeft="@id/tvEmailProfile"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

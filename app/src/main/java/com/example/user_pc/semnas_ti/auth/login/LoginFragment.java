@@ -1,10 +1,11 @@
-package com.example.user_pc.semnas_ti.auth;
+package com.example.user_pc.semnas_ti.auth.login;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 import com.example.user_pc.semnas_ti.R;
 import com.example.user_pc.semnas_ti.admin.AdminActivity;
 import com.example.user_pc.semnas_ti.api.ApiClient;
+import com.example.user_pc.semnas_ti.auth.AuthPresenter;
+import com.example.user_pc.semnas_ti.auth.AuthView;
 import com.example.user_pc.semnas_ti.bantuan.ConstantURL;
 import com.example.user_pc.semnas_ti.bantuan.PreferencesHelper;
 import com.example.user_pc.semnas_ti.model.User;
@@ -32,6 +35,7 @@ public class LoginFragment extends Fragment implements AuthView, View.OnClickLis
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_login, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         btnLogin = view.findViewById(R.id.btnLogin);
         etEmailLogin = view.findViewById(R.id.etEmailLogin);
         etPasswordLogin = view.findViewById(R.id.etPasswordLogin);
