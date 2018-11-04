@@ -55,6 +55,17 @@
 
             <TextView
                 android:layout_marginTop="10dp"
+                style="@style/label"
+                android:text="Nomor Telepon"/>
+            <EditText
+                android:id="@+id/etContact"
+                style="@style/etStyle"
+                android:drawableRight="@drawable/ic_call"
+                android:hint="Input Nomor Telepon"
+                android:inputType="phone"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
                 android:text="Password"
                 style="@style/label" />
             <EditText
@@ -62,17 +73,6 @@
                 android:inputType="textPassword"
                 android:drawableRight="@drawable/ic_https_black_24dp"
                 android:hint="Input Password"
-                style="@style/etStyle"/>
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:text="Konfirmasi Password"
-                style="@style/label" />
-            <EditText
-                android:id="@+id/etPasswordConfirmation"
-                android:inputType="textPassword"
-                android:drawableRight="@drawable/ic_https_black_24dp"
-                android:hint="Konfirmasi Password"
                 style="@style/etStyle"/>
 
             <Button

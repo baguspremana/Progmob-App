@@ -17,6 +17,7 @@ import com.example.user_pc.semnas_ti.admin.AdminActivity;
 import com.example.user_pc.semnas_ti.api.ApiClient;
 import com.example.user_pc.semnas_ti.auth.AuthPresenter;
 import com.example.user_pc.semnas_ti.auth.AuthView;
+import com.example.user_pc.semnas_ti.auth.LoginRegisterActivity;
 import com.example.user_pc.semnas_ti.bantuan.ConstantURL;
 import com.example.user_pc.semnas_ti.bantuan.PreferencesHelper;
 import com.example.user_pc.semnas_ti.model.User;
@@ -28,7 +29,7 @@ public class SignUpFragment extends Fragment implements AuthView, View.OnClickLi
     EditText etName;
     EditText etEmail;
     EditText etPassword;
-    EditText etPasswordConfirmation;
+    EditText etContact;
 
     private PreferencesHelper preferencesHelper;
 
@@ -41,8 +42,8 @@ public class SignUpFragment extends Fragment implements AuthView, View.OnClickLi
         btnSignUp = view.findViewById(R.id.btnSignUp);
         etName = view.findViewById(R.id.etname);
         etEmail = view.findViewById(R.id.etEmail);
+        etContact = view.findViewById(R.id.etContact);
         etPassword = view.findViewById(R.id.etPassword);
-        etPasswordConfirmation = view.findViewById(R.id.etPasswordConfirmation);
         return view;
     }
 
@@ -68,12 +69,9 @@ public class SignUpFragment extends Fragment implements AuthView, View.OnClickLi
     @Override
     public void onSuccess(User user) {
         preferencesHelper.setUserLogin(user);
-        if (user.getRole()==ConstantURL.Role.USER){
-            startActivity(new Intent(getContext(),UserActivity.class));
-        }else {
-            startActivity(new Intent(getContext(),AdminActivity.class));
-        }
+        startActivity(new Intent(getContext(), LoginRegisterActivity.class));
         getActivity().finish();
+        Toast.makeText(getContext(), "Registrasi Akun Berhasil", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -89,16 +87,16 @@ public class SignUpFragment extends Fragment implements AuthView, View.OnClickLi
     private void register(){
         String name = etName.getText().toString();
         String email = etEmail.getText().toString();
+        String contact = etContact.getText().toString();
         String password = etPassword.getText().toString();
-        String c_password = etPasswordConfirmation.getText().toString();
 
-        if (validate(name, email, password, c_password)){
-            presenter.register(name, email, password, c_password);
+        if (validate(name, email, contact, password)){
+            presenter.register(name, email, contact, password);
         }
 
     }
 
-    public boolean validate(String name, String email, String password, String c_password){
+    public boolean validate(String name, String email, String contact, String password){
         if (name.equals("")){
             etName.setError("Field Nama Tidak Boleh Kosong");
             return false;
@@ -109,15 +107,16 @@ public class SignUpFragment extends Fragment implements AuthView, View.OnClickLi
             return false;
         }
 
+        if (contact.equals("")){
+            etContact.setError("Field Nomor Telepon Tidak Boleh Kosong");
+            return false;
+        }
+
         if (password.equals("")){
             etPassword.setError("Field Password Tidak Boleh Kosong");
             return false;
         }
 
-        if (c_password.equals("")){
-            etPasswordConfirmation.setError("Field Konfirmasi Password Tidak Boleh Kosong");
-            return false;
-        }
         return true;
     }
 }

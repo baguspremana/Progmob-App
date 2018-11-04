@@ -19,7 +19,7 @@ public interface ApiService {
     Call<User> register(
             @Field("name") String name,
             @Field("email") String email,
-            @Field("password") String password,
-            @Field("c_password") String c_password
+            @Field("contact") String contact,
+            @Field("password") String password
     );
 }

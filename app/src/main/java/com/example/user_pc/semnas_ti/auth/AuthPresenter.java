@@ -35,8 +35,8 @@ public class AuthPresenter {
                 });
     }
 
-    public void register(String name, String email, String password, String c_password){
-        service.register(name, email, password, c_password)
+    public void register(String name, String email, String contact, String password){
+        service.register(name, email, contact, password)
                 .enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {

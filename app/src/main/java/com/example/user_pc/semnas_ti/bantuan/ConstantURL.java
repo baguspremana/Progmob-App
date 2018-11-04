@@ -1,7 +1,7 @@
 package com.example.user_pc.semnas_ti.bantuan;
 
 public class ConstantURL {
-    public static final String BASE_URL = "http://10.164.248.211:8000/";
+    public static final String BASE_URL = "http://192.168.43.160:8000/";
 
     public static final class Role{
         public static final int USER=1;
