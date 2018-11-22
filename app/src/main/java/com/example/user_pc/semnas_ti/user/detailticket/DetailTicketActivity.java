@@ -21,6 +21,7 @@ import com.example.user_pc.semnas_ti.api.ApiClient;
 import com.example.user_pc.semnas_ti.api.ApiService;
 import com.example.user_pc.semnas_ti.bantuan.ConstantURL;
 import com.example.user_pc.semnas_ti.bantuan.CurrencyFormated;
+import com.example.user_pc.semnas_ti.bantuan.DateFormated;
 import com.example.user_pc.semnas_ti.model.Response;
 import com.example.user_pc.semnas_ti.model.Ticket;
 import com.example.user_pc.semnas_ti.user.UserActivity;
@@ -77,11 +78,12 @@ public class DetailTicketActivity extends AppCompatActivity implements View.OnCl
 
     private void setView() {
         String ticketPrice = CurrencyFormated.toRupiah(ticket.getBookingPrice());
+        String tanggal = DateFormated.formatDate(ticket.getCreatedAt());
         tvNama.setText(ticket.getBookingName());
         tvEmail.setText(ticket.getBookingEmail());
         tvContact.setText(ticket.getBookingContact());
         tvPrice.setText(ticketPrice);
-        tvTanggal.setText(ticket.getCreatedAt());
+        tvTanggal.setText(tanggal);
         if (ticket.getStatus() == 2) {
             tvStatus.setText("Terverifikasi");
         } else {

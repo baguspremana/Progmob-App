@@ -29,6 +29,10 @@ public class UserActivity extends AppCompatActivity {
                 bottomNavigationView.setSelectedItemId(R.id.nav_pesanTiket);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
                         new TiketUserFragment()).commit();
+            }else if (extra.containsKey("payment")){
+                bottomNavigationView.setSelectedItemId(R.id.nav_uploadPembayaran);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
+                        new BayarTiketFragment()).commit();
             }
         }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,

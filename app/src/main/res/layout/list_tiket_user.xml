@@ -15,18 +15,27 @@
         android:padding="15dp"
         android:background="@drawable/et_bg">
 
+        <ImageView
+            android:id="@+id/iv_list_ticket_user"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/bg_gradient"
+            android:layout_marginRight="15dp"/>
+
         <TextView
             android:id="@+id/tv_booking_name"
             style="@style/tvStyle"
             android:text="Agus"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/iv_list_ticket_user"/>
 
         <TextView
             android:id="@+id/tv_booking_email"
             style="@style/tvStyle"
             android:text="agus@mail.com"
             android:layout_below="@id/tv_booking_name"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/iv_list_ticket_user"/>
 
         <TextView
             android:id="@+id/tv_booking_price"

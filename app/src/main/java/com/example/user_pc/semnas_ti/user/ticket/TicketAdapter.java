@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.user_pc.semnas_ti.R;
 import com.example.user_pc.semnas_ti.bantuan.CurrencyFormated;
+import com.example.user_pc.semnas_ti.bantuan.DateFormated;
 import com.example.user_pc.semnas_ti.model.Ticket;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvEmail, tvPrice, tvTanggal, tvStatus;
-        ImageView imgStatus;
+        ImageView imgStatus, imgTicket;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +59,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             tvTanggal = itemView.findViewById(R.id.tv_tgl);
             imgStatus = itemView.findViewById(R.id.icon_status);
             tvStatus = itemView.findViewById(R.id.tv_status);
+            imgTicket = itemView.findViewById(R.id.iv_list_ticket_user);
             if (onClickListener!=null){
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -70,10 +72,11 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
         public void bind(Ticket ticket) {
             String bookingPrice = CurrencyFormated.toRupiah(ticket.getBookingPrice());
+            String tanggal = DateFormated.formatDate(ticket.getCreatedAt());
             tvName.setText(ticket.getBookingName());
             tvEmail.setText(ticket.getBookingEmail());
             tvPrice.setText(bookingPrice);
-            tvTanggal.setText(ticket.getCreatedAt());
+            tvTanggal.setText(tanggal);
             if (ticket.getStatus()== 2) {
                 imgStatus.setImageResource(R.drawable.ic_check);
                 tvStatus.setText("Verif");
@@ -81,6 +84,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 imgStatus.setImageResource(R.drawable.ic_close);
                 tvStatus.setText("Belum");
             }
+            imgTicket.setImageResource(R.drawable.ticket_user);
         }
     }
 
