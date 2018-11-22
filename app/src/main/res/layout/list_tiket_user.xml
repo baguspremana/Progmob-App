@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/et_bg">
+
+        <TextView
+            android:id="@+id/tv_booking_name"
+            style="@style/tvStyle"
+            android:text="Agus"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_booking_email"
+            style="@style/tvStyle"
+            android:text="agus@mail.com"
+            android:layout_below="@id/tv_booking_name"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_booking_price"
+            style="@style/tvStyle"
+            android:text="Rp 75.000"
+            android:layout_toRightOf="@id/tv_booking_email"
+            android:layout_marginStart="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_tgl"
+            style="@style/tvStyle"
+            android:text="11-11-2018"
+            android:layout_alignStart="@id/tv_booking_price"
+            android:layout_below="@id/tv_booking_price"
+            android:layout_alignTop="@id/tv_booking_email"/>
+
+        <LinearLayout
+            android:id="@+id/bar_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/icon_status"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_check"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Terverifikasi"
+                android:textSize="10sp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

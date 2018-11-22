@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.user_pc.semnas_ti.R;
+import com.example.user_pc.semnas_ti.user.home.HomeUserFragment;
+import com.example.user_pc.semnas_ti.user.profile.ProfileUserFragment;
+import com.example.user_pc.semnas_ti.user.ticket.TiketUserFragment;
+import com.example.user_pc.semnas_ti.user.ticketpayment.BayarTiketFragment;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -19,8 +23,17 @@ public class UserActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_user);
         bottomNavigationView.setOnNavigationItemSelectedListener(navUserListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
-                new HomeUserFragment()).commit();
+        Bundle extra = getIntent().getExtras();
+        if(extra != null){
+            if(extra.containsKey("fragment")){
+                bottomNavigationView.setSelectedItemId(R.id.nav_pesanTiket);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
+                        new TiketUserFragment()).commit();
+            }
+        }else{
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
+                    new HomeUserFragment()).commit();
+        }
 
     }
 
@@ -30,7 +43,7 @@ public class UserActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedUserFragment = null;
 
-                    switch (item.getItemId()){
+                    switch (item.getItemId()) {
                         case R.id.nav_home:
                             selectedUserFragment = new HomeUserFragment();
                             break;
@@ -44,6 +57,7 @@ public class UserActivity extends AppCompatActivity {
                             selectedUserFragment = new ProfileUserFragment();
                             break;
                     }
+
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
                             selectedUserFragment).commit();

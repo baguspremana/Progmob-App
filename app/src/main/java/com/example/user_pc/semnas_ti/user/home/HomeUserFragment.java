@@ -1,4 +1,4 @@
-package com.example.user_pc.semnas_ti.user;
+package com.example.user_pc.semnas_ti.user.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

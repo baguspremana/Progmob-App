@@ -18,9 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.LoginRegisterActivity"></activity>
+        <activity android:name=".auth.LoginRegisterActivity" />
         <activity android:name=".user.UserActivity" />
         <activity android:name=".admin.AdminActivity" />
+        <activity android:name=".user.detailticket.DetailTicketActivity" />
+        <activity android:name=".user.addticket.AddTicketAcitivity" />
+        <activity android:name=".user.detailticketpayment.DetailTicketPaymentActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:id="@+id/layout_input"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/bg_white"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo"
+                android:layout_width="165dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:text="Pesan Tiket"
+                android:id="@+id/signUp"
+                android:layout_marginBottom="5dp"
+                style="@style/judul"/>
+
+            <TextView
+                android:text="Nama"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/et_booking_name"
+                android:drawableRight="@drawable/ic_perm"
+                android:hint="Input Nama Anda"
+                style="@style/etStyle"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="E-Mail"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/et_booking_email"
+                android:drawableRight="@drawable/ic_mail"
+                android:inputType="textEmailAddress"
+                android:hint="Input Alamat E-Mail Anda"
+                style="@style/etStyle"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                style="@style/label"
+                android:text="Nomor Telepon"/>
+            <EditText
+                android:id="@+id/et_booking_contact"
+                style="@style/etStyle"
+                android:drawableRight="@drawable/ic_call"
+                android:hint="Input Nomor Telepon"
+                android:inputType="phone"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Konsumsi"
+                style="@style/label" />
+            <RadioGroup
+                android:id="@+id/rg_booking_konsum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/rb_veget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Veget"
+                    android:textSize="15sp"
+                    android:textColor="#000"/>
+                <RadioButton
+                    android:id="@+id/rb_non_veget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Non Veget"
+                    android:textSize="15sp"
+                    android:textColor="#000"/>
+            </RadioGroup>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Instansi"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/et_booking_instansi"
+                android:drawableRight="@drawable/ic_school"
+                android:hint="Input Instansi"
+                style="@style/etStyle"/>
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/add_ticket"
+                android:text="Pesan"
+                style="@style/btnStyle"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
