@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".admin.dataadmin.detaildataadmin.DetailDataAdminActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="340dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/bg_gradient"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_detail_data_admin"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/cute_profile"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center_horizontal"
+                android:elevation="2dp"/>
+
+            <TextView
+                android:id="@+id/tv_detail_admin_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agnes"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="310dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="270dp"
+            android:background="@drawable/et_bg"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/emailProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_mail"/>
+        <TextView
+            android:id="@+id/tv_detail_data_admin_email"
+            style="@style/tvStyle"
+            android:text="dummy@mail.com"
+            android:layout_toRightOf="@id/emailProfile"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:id="@+id/contactProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_call"
+            android:layout_below="@id/emailProfile"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/tv_detail_data_admin_kontak"
+            style="@style/tvStyle"
+            android:text="0878654321902"
+            android:layout_toRightOf="@id/contactProfile"
+            android:layout_alignBottom="@id/contactProfile"
+            android:layout_alignLeft="@id/tv_detail_data_admin_email"/>
+
+        <ImageView
+            android:id="@+id/iconGender"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/gender"
+            android:layout_below="@+id/tv_detail_data_admin_kontak"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/tv_detail_data_admin_gender"
+            style="@style/tvStyle"
+            android:text="Perempuan"
+            android:layout_toRightOf="@id/iconGender"
+            android:layout_alignBottom="@id/iconGender"
+            android:layout_alignLeft="@id/tv_detail_data_admin_kontak"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="Dashboard"/>
+    </group>
+
+    <item android:title="Tiket">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/nav_verifikasi"
+                    android:icon="@drawable/ic_view_list"
+                    android:title="Verifikasi"/>
+                <item android:id="@+id/nav_ticket_scanner"
+                    android:icon="@drawable/ic_scanner"
+                    android:title="Scan Tiket"/>
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Seminar">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/nav_seminar"
+                    android:icon="@drawable/ic_info"
+                    android:title="Informasi Seminar"/>
+                <item android:id="@+id/nav_admin"
+                    android:icon="@drawable/ic_supervisor"
+                    android:title="Admin"/>
+                <item android:id="@+id/nav_faq_admin"
+                    android:icon="@drawable/ic_question_answer"
+                    android:title="FAQ"/>
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Profile">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/nav_admin_profile"
+                    android:icon="@drawable/ic_person"
+                    android:title="Profile"/>
+                <item android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_exit_to_app"
+                    android:title="Logout"/>
+            </group>
+        </menu>
+    </item>
+
+</menu>

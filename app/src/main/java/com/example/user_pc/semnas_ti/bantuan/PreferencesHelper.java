@@ -15,6 +15,7 @@ public class PreferencesHelper {
     private final String EMAIL="email";
     private final String CONTACT="contact";
     private final String ROLE="role";
+    private final String GENDER="gender";
 
     public PreferencesHelper(Context context) {
         sharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -68,6 +69,14 @@ public class PreferencesHelper {
         return sharedPreferences.getInt(ROLE, 0);
     }
 
+    public void setGender(int gender){
+        sharedPreferences.edit().putInt(GENDER,gender).apply();
+    }
+
+    public int getGender() {
+        return sharedPreferences.getInt(GENDER, 0);
+    }
+
     public void setUserLogin(User user){
         setLogin(true);
         setToken(user.getToken());
@@ -75,6 +84,7 @@ public class PreferencesHelper {
         setEmail(user.getEmail());
         setContact(user.getContact());
         setRole(user.getRole());
+        setGender(user.getGender());
     }
 
     public void logout(){

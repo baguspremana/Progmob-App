@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.infoseminar.updateseminarinfo.UpdateSeminarActivity"
+    android:background="@drawable/bg_gradient">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:id="@+id/layout_input"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/bg_white"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo"
+                android:layout_width="165dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:text="Edit Informasi Seminar"
+                android:id="@+id/signUp"
+                android:layout_marginBottom="5dp"
+                style="@style/judul"/>
+
+            <TextView
+                android:text="Nama Seminar"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/et_edit_seminar_name"
+                android:hint="Input Nama Seminar"
+                style="@style/etStyle"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Tema Seminar"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/et_edit_seminar_theme"
+                android:hint="Input Tema Seminar"
+                style="@style/etStyle"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                style="@style/label"
+                android:text="Deskripsi Tema"/>
+            <EditText
+                android:id="@+id/et_edit_seminar_desc"
+                style="@style/etDesc"
+                android:hint="Input Deskripsi Tema" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                style="@style/label"
+                android:text="Tanggal Seminar"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_edit_tanggal_seminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"/>
+                <TextView
+                    android:id="@+id/tv_edit_bulan_seminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Maret"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:id="@+id/tv_edit_tahun_seminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2018"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:id="@+id/tv_edit_waktu_seminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10:00"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Tampat Seminar"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/et_edit_seminar_location"
+                android:hint="Input Tempat Seminar"
+                style="@style/etStyle"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Ketersedian Tiket"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/et_edit_seminar_tiket"
+                android:hint="Input Jumlah Tiket"
+                style="@style/etStyle"
+                android:inputType="number"/>
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/btn_edit_info_seminar"
+                android:text="Simpan"
+                style="@style/btnStyle"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

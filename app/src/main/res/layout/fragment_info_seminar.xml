@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/add_seminar_info"
+        style="@style/btnStyle"
+        android:text="Tambah Info Seminar"
+        android:layout_margin="20dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/info_seminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_bg"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="15dp"
+            android:elevation="4dp">
+
+            <TextView
+                style="@style/judul"
+                android:text="Informasi Seminar"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Nama Seminar"/>
+            <TextView
+                android:id="@+id/seminar_name"
+                style="@style/tvStyle"
+                android:text="Semnas TI"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Tema Seminar"/>
+            <TextView
+                android:id="@+id/seminar_theme"
+                style="@style/tvStyle"
+                android:text="MJS"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Pelaksanaan Seminar"/>
+            <TextView
+                android:id="@+id/seminar_schedule"
+                style="@style/tvStyle"
+                android:text="12-10-2018 08:00"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Tempat Seminar"/>
+            <TextView
+                android:id="@+id/seminar_location"
+                style="@style/tvStyle"
+                android:text="Hotel A"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Jumlah Tiket Tersedia"/>
+            <TextView
+                android:id="@+id/seminar_ticket"
+                style="@style/tvStyle"
+                android:text="200"
+                android:layout_marginTop="5dp"/>
+
+            <Button
+                android:id="@+id/edit_seminar"
+                style="@style/btnStyle"
+                android:text="Edit Informasi"
+                android:layout_marginTop="15dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

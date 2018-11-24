@@ -21,10 +21,16 @@
         </activity>
         <activity android:name=".auth.LoginRegisterActivity" />
         <activity android:name=".user.UserActivity" />
-        <activity android:name=".admin.AdminActivity" />
+        <activity
+            android:name=".admin.AdminActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".user.detailticket.DetailTicketActivity" />
         <activity android:name=".user.addticket.AddTicketAcitivity" />
-        <activity android:name=".user.detailticketpayment.DetailTicketPaymentActivity"></activity>
+        <activity android:name=".user.detailticketpayment.DetailTicketPaymentActivity" />
+        <activity android:name=".admin.infoseminar.addseminarinfo.AddSeminarActivity" />
+        <activity android:name=".admin.dataadmin.addadmin.AddAdminActivity" />
+        <activity android:name=".admin.dataadmin.detaildataadmin.DetailDataAdminActivity" />
+        <activity android:name=".admin.infoseminar.updateseminarinfo.UpdateSeminarActivity"></activity>
     </application>
 
 </manifest>
