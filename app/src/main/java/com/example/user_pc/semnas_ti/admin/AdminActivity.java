@@ -12,9 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.user_pc.semnas_ti.R;
+import com.example.user_pc.semnas_ti.admin.dashboardadmin.DashboardFragment;
 import com.example.user_pc.semnas_ti.admin.dataadmin.AdminFragment;
+import com.example.user_pc.semnas_ti.admin.datafaq.FaqAdminFragment;
 import com.example.user_pc.semnas_ti.admin.infoseminar.InfoSeminarFragment;
 import com.example.user_pc.semnas_ti.admin.profile.ProfileAdminFragment;
+import com.example.user_pc.semnas_ti.admin.scanticket.ScanFragment;
 import com.example.user_pc.semnas_ti.admin.verifikasi.VerifikasiFragment;
 import com.example.user_pc.semnas_ti.auth.LoginRegisterActivity;
 import com.example.user_pc.semnas_ti.bantuan.PreferencesHelper;
@@ -53,6 +56,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin,
                         new AdminFragment()).commit();
                 navigationView.setCheckedItem(R.id.nav_admin);
+            }else if (extra.containsKey("faq")){
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin,
+                        new FaqAdminFragment()).commit();
+                navigationView.setCheckedItem(R.id.nav_faq_admin);
             }
         }else {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin,

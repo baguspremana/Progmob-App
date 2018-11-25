@@ -30,7 +30,11 @@
         <activity android:name=".admin.infoseminar.addseminarinfo.AddSeminarActivity" />
         <activity android:name=".admin.dataadmin.addadmin.AddAdminActivity" />
         <activity android:name=".admin.dataadmin.detaildataadmin.DetailDataAdminActivity" />
-        <activity android:name=".admin.infoseminar.updateseminarinfo.UpdateSeminarActivity"></activity>
+        <activity android:name=".admin.infoseminar.updateseminarinfo.UpdateSeminarActivity" />
+        <activity android:name=".admin.datafaq.detaildatafaq.DetailFaqAdminActivity" />
+        <activity android:name=".admin.datafaq.adddatafaq.AddFaqAdminActivity" />
+        <activity android:name=".admin.profile.editprofile.EditProfileAdminActivity" />
+        <activity android:name=".admin.verifikasi.detailverifikasi.DetailVerifikasiActivity"></activity>
     </application>
 
 </manifest>

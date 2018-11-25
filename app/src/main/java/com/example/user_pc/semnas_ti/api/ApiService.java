@@ -1,7 +1,9 @@
 package com.example.user_pc.semnas_ti.api;
 
 import com.example.user_pc.semnas_ti.model.DataAdmin;
+import com.example.user_pc.semnas_ti.model.FaqResponse;
 import com.example.user_pc.semnas_ti.model.InfoSeminarResponse;
+import com.example.user_pc.semnas_ti.model.Profile;
 import com.example.user_pc.semnas_ti.model.Response;
 import com.example.user_pc.semnas_ti.model.Ticket;
 import com.example.user_pc.semnas_ti.model.TicketPayment;
@@ -116,5 +118,31 @@ public interface ApiService {
             @Field("seminar_location") String seminarLocation,
             @Field("ticket_available") int seminarTicket
     );
+
+    @GET("show/faq")
+    Call<List<FaqResponse>> showFAQ();
+
+    @FormUrlEncoded
+    @POST("admin/add/faq")
+    Call<Response> addFAQ(
+            @Field("question") String question,
+            @Field("answer") String answer
+    );
+
+    @FormUrlEncoded
+    @POST("admin/update/faq/{id}")
+    Call<Response> updateFAQ(
+            @Path("id") int id,
+            @Field("question") String question,
+            @Field("answer") String answer
+    );
+
+    @DELETE("admin/delete/faq/{id}")
+    Call<Response> deleteFAQ(
+            @Path("id") int id
+    );
+
+    @GET("profile")
+    Call<Profile> showProfile();
 
 }

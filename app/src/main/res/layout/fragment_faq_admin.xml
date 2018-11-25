@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_faq_admin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
+        android:id="@+id/tv_faq_kosong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FAQ"
+        android:text="Belum Ada Data"
         android:textSize="30sp"
-        android:layout_gravity="center_horizontal"/>
+        android:textColor="#000"
+        android:layout_centerInParent="true"/>
 
-</LinearLayout>
+</RelativeLayout>

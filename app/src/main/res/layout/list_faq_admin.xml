@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:clickable="true"
+    android:elevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/et_bg">
+
+        <ImageView
+            android:id="@+id/iv_faq_admin"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_question_answer_blue"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/tv_question_admin"
+            style="@style/tvStyle"
+            android:text="Test"
+            android:layout_toRightOf="@id/iv_faq_admin"/>
+
+        <TextView
+            android:id="@+id/tv_name_created_faq"
+            style="@style/tvStyle"
+            android:text="Admin"
+            android:layout_below="@id/tv_question_admin"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/iv_faq_admin"/>
+
+        <TextView
+            android:id="@+id/tv_email_created_faq"
+            style="@style/tvStyle"
+            android:text="admin@mail.com"
+            android:layout_toRightOf="@+id/tv_name_created_faq"
+            android:layout_alignTop="@id/tv_name_created_faq"
+            android:layout_marginLeft="8dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

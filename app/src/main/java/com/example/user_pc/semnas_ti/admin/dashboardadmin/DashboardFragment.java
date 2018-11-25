@@ -1,4 +1,4 @@
-package com.example.user_pc.semnas_ti.admin;
+package com.example.user_pc.semnas_ti.admin.dashboardadmin;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import com.example.user_pc.semnas_ti.R;
 
-public class ScanFragment extends Fragment {
+public class DashboardFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_scan, container, false);
+        return inflater.inflate(R.layout.fragment_dashboard, container, false);
     }
 }

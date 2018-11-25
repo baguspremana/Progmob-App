@@ -1,4 +1,4 @@
-package com.example.user_pc.semnas_ti.admin;
+package com.example.user_pc.semnas_ti.admin.scanticket;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import com.example.user_pc.semnas_ti.R;
 
-public class FaqAdminFragment extends Fragment {
+public class ScanFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_faq_admin, container, false);
+        return inflater.inflate(R.layout.fragment_scan, container, false);
     }
 }

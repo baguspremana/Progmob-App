@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:id="@+id/layout_input"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Delete FAQ"
+                android:id="@+id/signUp"
+                android:layout_marginBottom="5dp"
+                style="@style/judul"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Anda yakin ingin menghapus data ini?"
+                android:textSize="15sp"
+                android:textColor="#000"
+                android:layout_marginTop="20dp"/>
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/btn_delete_faq_admin"
+                android:text="Delete"
+                style="@style/btnStyle"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

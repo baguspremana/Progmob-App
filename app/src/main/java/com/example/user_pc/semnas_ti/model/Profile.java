@@ -5,31 +5,28 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TicketPaymentAdmin implements Parcelable {
+public class Profile implements Parcelable {
+
+	@SerializedName("role")
+	private int role;
+
+	@SerializedName("gender")
+	private int gender;
 
 	@SerializedName("updated_at")
 	private String updatedAt;
 
-	@SerializedName("user_id")
-	private int userId;
+	@SerializedName("photo_profile")
+	private String photoProfile;
 
 	@SerializedName("contact")
 	private String contact;
 
-	@SerializedName("jumlah_ticket")
-	private int jumlahTicket;
-
 	@SerializedName("name")
 	private String name;
 
-	@SerializedName("photo")
-	private String photo;
-
 	@SerializedName("created_at")
 	private String createdAt;
-
-	@SerializedName("total_harga")
-	private String totalHarga;
 
 	@SerializedName("id")
 	private int id;
@@ -37,34 +34,45 @@ public class TicketPaymentAdmin implements Parcelable {
 	@SerializedName("email")
 	private String email;
 
-	@SerializedName("status")
-	private int status;
-
-	protected TicketPaymentAdmin(Parcel in) {
+	protected Profile(Parcel in) {
+		role = in.readInt();
+		gender = in.readInt();
 		updatedAt = in.readString();
-		userId = in.readInt();
+		photoProfile = in.readString();
 		contact = in.readString();
-		jumlahTicket = in.readInt();
 		name = in.readString();
-		photo = in.readString();
 		createdAt = in.readString();
-		totalHarga = in.readString();
 		id = in.readInt();
 		email = in.readString();
-		status = in.readInt();
 	}
 
-	public static final Creator<TicketPaymentAdmin> CREATOR = new Creator<TicketPaymentAdmin>() {
+	public static final Creator<Profile> CREATOR = new Creator<Profile>() {
 		@Override
-		public TicketPaymentAdmin createFromParcel(Parcel in) {
-			return new TicketPaymentAdmin(in);
+		public Profile createFromParcel(Parcel in) {
+			return new Profile(in);
 		}
 
 		@Override
-		public TicketPaymentAdmin[] newArray(int size) {
-			return new TicketPaymentAdmin[size];
+		public Profile[] newArray(int size) {
+			return new Profile[size];
 		}
 	};
+
+	public void setRole(int role){
+		this.role = role;
+	}
+
+	public int getRole(){
+		return role;
+	}
+
+	public void setGender(int gender){
+		this.gender = gender;
+	}
+
+	public int getGender(){
+		return gender;
+	}
 
 	public void setUpdatedAt(String updatedAt){
 		this.updatedAt = updatedAt;
@@ -74,12 +82,12 @@ public class TicketPaymentAdmin implements Parcelable {
 		return updatedAt;
 	}
 
-	public void setUserId(int userId){
-		this.userId = userId;
+	public void setPhotoProfile(String photoProfile){
+		this.photoProfile = photoProfile;
 	}
 
-	public int getUserId(){
-		return userId;
+	public String getPhotoProfile(){
+		return photoProfile;
 	}
 
 	public void setContact(String contact){
@@ -90,14 +98,6 @@ public class TicketPaymentAdmin implements Parcelable {
 		return contact;
 	}
 
-	public void setJumlahTicket(int jumlahTicket){
-		this.jumlahTicket = jumlahTicket;
-	}
-
-	public int getJumlahTicket(){
-		return jumlahTicket;
-	}
-
 	public void setName(String name){
 		this.name = name;
 	}
@@ -106,28 +106,12 @@ public class TicketPaymentAdmin implements Parcelable {
 		return name;
 	}
 
-	public void setPhoto(String photo){
-		this.photo = photo;
-	}
-
-	public String getPhoto(){
-		return photo;
-	}
-
 	public void setCreatedAt(String createdAt){
 		this.createdAt = createdAt;
 	}
 
 	public String getCreatedAt(){
 		return createdAt;
-	}
-
-	public void setTotalHarga(String totalHarga){
-		this.totalHarga = totalHarga;
-	}
-
-	public String getTotalHarga(){
-		return totalHarga;
 	}
 
 	public void setId(int id){
@@ -146,29 +130,19 @@ public class TicketPaymentAdmin implements Parcelable {
 		return email;
 	}
 
-	public void setStatus(int status){
-		this.status = status;
-	}
-
-	public int getStatus(){
-		return status;
-	}
-
 	@Override
  	public String toString(){
 		return 
-			"TicketPaymentAdmin{" + 
-			"updated_at = '" + updatedAt + '\'' + 
-			",user_id = '" + userId + '\'' + 
+			"Profile{" + 
+			"role = '" + role + '\'' + 
+			",gender = '" + gender + '\'' + 
+			",updated_at = '" + updatedAt + '\'' + 
+			",photo_profile = '" + photoProfile + '\'' + 
 			",contact = '" + contact + '\'' + 
-			",jumlah_ticket = '" + jumlahTicket + '\'' + 
 			",name = '" + name + '\'' + 
-			",photo = '" + photo + '\'' + 
 			",created_at = '" + createdAt + '\'' + 
-			",total_harga = '" + totalHarga + '\'' + 
 			",id = '" + id + '\'' + 
 			",email = '" + email + '\'' + 
-			",status = '" + status + '\'' + 
 			"}";
 		}
 
@@ -179,16 +153,14 @@ public class TicketPaymentAdmin implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(role);
+		dest.writeInt(gender);
 		dest.writeString(updatedAt);
-		dest.writeInt(userId);
+		dest.writeString(photoProfile);
 		dest.writeString(contact);
-		dest.writeInt(jumlahTicket);
 		dest.writeString(name);
-		dest.writeString(photo);
 		dest.writeString(createdAt);
-		dest.writeString(totalHarga);
 		dest.writeInt(id);
 		dest.writeString(email);
-		dest.writeInt(status);
 	}
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.datafaq.adddatafaq.AddFaqAdminActivity"
+    android:background="@drawable/bg_gradient">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:id="@+id/layout_input"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/bg_white"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logo"
+                android:layout_width="165dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:text="Tambah FAQ"
+                android:id="@+id/signUp"
+                android:layout_marginBottom="5dp"
+                style="@style/judul"/>
+
+            <TextView
+                android:text="Question"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/et_add_question"
+                android:drawableRight="@drawable/ic_question_answer_blue"
+                android:hint="Input Pertanyaan"
+                style="@style/etStyle"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Answer"
+                style="@style/label" />
+            <EditText
+                android:id="@+id/et_add_answer"
+                android:drawableRight="@drawable/ic_question_answer_blue"
+                android:hint="Input Jawaban"
+                style="@style/etDesc"/>
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/btn_add_faq_admin"
+                android:text="Simpan"
+                style="@style/btnStyle"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

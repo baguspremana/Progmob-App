@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.datafaq.detaildatafaq.DetailFaqAdminActivity"
+    android:background="@drawable/bg_gradient">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp">
+
+        <LinearLayout
+            android:id="@+id/layout_input"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/bg_white"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Detail FAQ"
+                android:id="@+id/signUp"
+                android:layout_marginBottom="5dp"
+                style="@style/judul"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:text="Question"
+                style="@style/label" />
+            <TextView
+                android:id="@+id/tv_detail_question"
+                style="@style/tvStyle"
+                android:text="Test"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Answer"
+                style="@style/label" />
+            <TextView
+                android:id="@+id/tv_detail_answer"
+                style="@style/tvStyle"
+                android:text="Test"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Ditambahkan Oleh"
+                style="@style/label" />
+            <TextView
+                android:id="@+id/tv_detail_created_faq"
+                style="@style/tvStyle"
+                android:text="Test"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Email"
+                style="@style/label" />
+            <TextView
+                android:id="@+id/tv_detail_created_faq_email"
+                style="@style/tvStyle"
+                android:text="Test"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Tanggal Ditambahkan"
+                style="@style/label" />
+            <TextView
+                android:id="@+id/tv_detail_created_faq_tanggal"
+                style="@style/tvStyle"
+                android:text="Test"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="Tanggal Update"
+                style="@style/label" />
+            <TextView
+                android:id="@+id/tv_detail_created_faq_update"
+                style="@style/tvStyle"
+                android:text="Test"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/edit_faq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_edit"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginRight="5dp"/>
+
+                <ImageButton
+                    android:id="@+id/delete_faq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_delete"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@color/colorAccent"
+                    android:layout_marginRight="5dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
