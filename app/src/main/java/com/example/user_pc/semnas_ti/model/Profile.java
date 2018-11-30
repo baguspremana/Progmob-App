@@ -25,6 +25,9 @@ public class Profile implements Parcelable {
 	@SerializedName("name")
 	private String name;
 
+	@SerializedName("fcm_token")
+	private String fcmToken;
+
 	@SerializedName("created_at")
 	private String createdAt;
 
@@ -41,6 +44,7 @@ public class Profile implements Parcelable {
 		photoProfile = in.readString();
 		contact = in.readString();
 		name = in.readString();
+		fcmToken = in.readString();
 		createdAt = in.readString();
 		id = in.readInt();
 		email = in.readString();
@@ -106,6 +110,14 @@ public class Profile implements Parcelable {
 		return name;
 	}
 
+	public void setFcmToken(String fcmToken){
+		this.fcmToken = fcmToken;
+	}
+
+	public String getFcmToken(){
+		return fcmToken;
+	}
+
 	public void setCreatedAt(String createdAt){
 		this.createdAt = createdAt;
 	}
@@ -140,6 +152,7 @@ public class Profile implements Parcelable {
 			",photo_profile = '" + photoProfile + '\'' + 
 			",contact = '" + contact + '\'' + 
 			",name = '" + name + '\'' + 
+			",fcm_token = '" + fcmToken + '\'' + 
 			",created_at = '" + createdAt + '\'' + 
 			",id = '" + id + '\'' + 
 			",email = '" + email + '\'' + 
@@ -159,6 +172,7 @@ public class Profile implements Parcelable {
 		dest.writeString(photoProfile);
 		dest.writeString(contact);
 		dest.writeString(name);
+		dest.writeString(fcmToken);
 		dest.writeString(createdAt);
 		dest.writeInt(id);
 		dest.writeString(email);

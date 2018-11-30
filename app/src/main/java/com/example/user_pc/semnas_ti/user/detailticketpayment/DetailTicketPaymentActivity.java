@@ -11,9 +11,13 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -48,6 +52,7 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
     ImageButton btnUpload, btnDel;
 
     TicketPayment ticketPayment;
+
     ApiService service;
 
     private static final int IMG_REQUEST=777;
@@ -62,6 +67,7 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
         setView();
 
         getSupportActionBar().hide();
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     private void init() {
@@ -101,6 +107,7 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Toast.makeText(DetailTicketPaymentActivity.this, "Test", Toast.LENGTH_SHORT).show();
                 showDialog();
             }
         });
@@ -236,5 +243,44 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
     }
 
     private void showDialog() {
+        Button deleteDialog;
+        service = ApiClient.getService(this);
+
+        AlertDialog.Builder dialog;
+        dialog = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_delete_master, null);
+
+        deleteDialog = dialogView.findViewById(R.id.btn_delete_master_ticket);
+
+        deleteDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                service
+                        .deleteMaster(ticketPayment.getId())
+                        .enqueue(new Callback<Response>() {
+                            @Override
+                            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                                if (response.isSuccessful()){
+                                    Intent intent = new Intent(DetailTicketPaymentActivity.this, UserActivity.class);
+                                    intent.putExtra("payment", BayarTiketFragment.class);
+                                    startActivity(intent);
+                                    finish();
+                                    Toast.makeText(DetailTicketPaymentActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(DetailTicketPaymentActivity.this, "Response Failed", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Response> call, Throwable t) {
+                                Toast.makeText(DetailTicketPaymentActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
+
+        dialog.setView(dialogView);
+        dialog.show();
     }
 }

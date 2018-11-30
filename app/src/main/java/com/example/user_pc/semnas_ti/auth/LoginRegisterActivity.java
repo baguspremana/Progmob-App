@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.example.user_pc.semnas_ti.R;
+import com.example.user_pc.semnas_ti.auth.faquser.FaqFragment;
 import com.example.user_pc.semnas_ti.auth.login.LoginFragment;
 import com.example.user_pc.semnas_ti.auth.register.SignUpFragment;
 

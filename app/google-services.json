@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "82494884603",
+    "firebase_url": "https://fcm-semnas.firebaseio.com",
+    "project_id": "fcm-semnas",
+    "storage_bucket": "fcm-semnas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82494884603:android:453d7a871580a458",
+        "android_client_info": {
+          "package_name": "com.example.user_pc.semnas_ti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82494884603-rjij32ikbt7o2b6amk98rsqtig49cs2l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.user_pc.semnas_ti",
+            "certificate_hash": "d3936a8acba28e507ce11d73051e0315a14e758a"
+          }
+        },
+        {
+          "client_id": "82494884603-4ingj4gi3k0gtjndoj1dej6nfi8chtea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnBBg7ckb5zoac8BSl_UDYOdrTKtgtm5c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82494884603-4ingj4gi3k0gtjndoj1dej6nfi8chtea.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

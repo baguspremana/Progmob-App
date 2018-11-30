@@ -2,9 +2,12 @@ package com.example.user_pc.semnas_ti.api;
 
 import com.example.user_pc.semnas_ti.model.DataAdmin;
 import com.example.user_pc.semnas_ti.model.FaqResponse;
+import com.example.user_pc.semnas_ti.model.FaqUserResponse;
 import com.example.user_pc.semnas_ti.model.InfoSeminarResponse;
+import com.example.user_pc.semnas_ti.model.PesertaResponse;
 import com.example.user_pc.semnas_ti.model.Profile;
 import com.example.user_pc.semnas_ti.model.Response;
+import com.example.user_pc.semnas_ti.model.ScanTicketResponse;
 import com.example.user_pc.semnas_ti.model.Ticket;
 import com.example.user_pc.semnas_ti.model.TicketPayment;
 import com.example.user_pc.semnas_ti.model.TicketPaymentAdmin;
@@ -21,6 +24,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -36,6 +40,16 @@ public interface ApiService {
             @Field("email") String email,
             @Field("contact") String contact,
             @Field("password") String password
+    );
+
+    @GET("faq/user")
+    Call<List<FaqUserResponse>> faqUser();
+
+    @FormUrlEncoded
+    @POST("save/fcm/{id}")
+    Call<Response> saveFCM(
+            @Path("id") int id,
+            @Field("fcm_token") String fcmToken
     );
 
     @FormUrlEncoded
@@ -74,6 +88,11 @@ public interface ApiService {
             @Path("id") int id,
             @Part MultipartBody.Part photo,
             @Part("etc")RequestBody etc
+    );
+
+    @PUT("delete/master/{id}")
+    Call<Response> deleteMaster(
+            @Path("id") int id
     );
 
     @GET("admin/show/seminar")
@@ -145,4 +164,36 @@ public interface ApiService {
     @GET("profile")
     Call<Profile> showProfile();
 
+    @GET("admin/booking/verifikasi/{id}")
+    Call<Response> verifTiket(
+            @Path("id")  int id
+    );
+
+    @GET("admin/send/notif/{id}")
+    Call<Response> sendNotif(
+            @Path("id") int id
+    );
+
+    @GET("admin/send/cancel/notif/{id}")
+    Call<Response> sendCancelNotif(
+            @Path("id") int id
+    );
+
+    @GET("admin/scan/tiket/{token}")
+    Call<ScanTicketResponse> scanTicket(
+            @Path("token") String token
+    );
+
+    @GET("admin/show/peserta")
+    Call<List<PesertaResponse>> showPeserta();
+
+    @Multipart
+    @POST("edit/profile")
+    Call<Profile> saveProfile(
+            @Part("name")RequestBody name,
+            @Part("email")RequestBody email,
+            @Part MultipartBody.Part photo_profile,
+            @Part("contact")RequestBody contact,
+            @Part("gender") int gender
+    );
 }

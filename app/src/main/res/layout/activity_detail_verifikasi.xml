@@ -1,9 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".admin.verifikasi.detailverifikasi.DetailVerifikasiActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarTicket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="#fff"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingtoolbarTicket"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:contentScrim="?attr/colorPrimary"
+            android:fitsSystemWindows="true"
+            app:titleEnabled="false">
+
+            <ImageView
+                android:id="@+id/img_verif"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="?android:attr/windowBackground"
+                app:layout_collapseMode="parallax"
+                android:fitsSystemWindows="true"
+                android:src="@drawable/bg_gradient"/>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbarVerif"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="top"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            </android.support.v7.widget.Toolbar>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+            <TextView
+                style="@style/label"
+                android:text="Nama" />
+            <TextView
+                android:id="@+id/tv_detail_verif_name"
+                style="@style/tvStyle"
+                android:text="Agus"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="E-Mail"/>
+            <TextView
+                android:id="@+id/tv_detail_verif_email"
+                style="@style/tvStyle"
+                android:text="Agus@mail.com"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Jumlah Tiket"/>
+            <TextView
+                android:id="@+id/tv_detail_verif_tiket"
+                style="@style/tvStyle"
+                android:text="1"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Total Harga"/>
+            <TextView
+                android:id="@+id/tv_detail_verif_price"
+                style="@style/tvStyle"
+                android:text="Rp. 75000"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Tanggal Pesan"/>
+            <TextView
+                android:id="@+id/tv_detail_verif_created_at"
+                style="@style/tvStyle"
+                android:text="2018-11-10"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Tanggal Update"/>
+            <TextView
+                android:id="@+id/tv_detail_verif_updated_at"
+                style="@style/tvStyle"
+                android:text="2018-11-10"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                style="@style/label"
+                android:text="Status Pesan"/>
+            <TextView
+                android:id="@+id/tv_detail_verif_status"
+                style="@style/tvStyle"
+                android:text="Terverifikasi"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_verif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_check_white"
+                android:padding="10dp"
+                android:background="@color/colorPrimary"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/send_notif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_send"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_marginRight="5dp"/>
+
+                <ImageButton
+                    android:id="@+id/send_notif_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_close_white"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@color/colorAccent"
+                    android:layout_marginRight="5dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

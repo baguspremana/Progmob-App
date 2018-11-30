@@ -16,6 +16,7 @@ public class PreferencesHelper {
     private final String CONTACT="contact";
     private final String ROLE="role";
     private final String GENDER="gender";
+    private final String FCM_TOKEN="fcm_token";
 
     public PreferencesHelper(Context context) {
         sharedPreferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -75,6 +76,14 @@ public class PreferencesHelper {
 
     public int getGender() {
         return sharedPreferences.getInt(GENDER, 0);
+    }
+
+    public void setFCMToken(String fcm_token){
+        sharedPreferences.edit().putString(FCM_TOKEN,fcm_token).apply();
+    }
+
+    public String getFCMToken() {
+        return sharedPreferences.getString(FCM_TOKEN, "");
     }
 
     public void setUserLogin(User user){

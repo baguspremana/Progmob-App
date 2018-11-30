@@ -87,6 +87,6 @@ public class VerifikasiFragment extends Fragment implements VerifikasiAdapter.On
 
     @Override
     public void onFailure(Throwable t) {
-        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Error"+t, Toast.LENGTH_SHORT).show();
     }
 }

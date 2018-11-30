@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
-        android:title="Home"/>
+        android:enabled="true"
+        android:title="Home"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nav_pesanTiket"
         android:icon="@drawable/ic_local_offer"
-        android:title="Tiket"/>
+        android:title="Tiket"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nav_uploadPembayaran"
         android:icon="@drawable/ic_file_upload"
-        android:title="Bayar"/>
+        android:title="Bayar"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/ic_person"
-        android:title="Profile"/>
+        android:title="Profile"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
 
 </menu>

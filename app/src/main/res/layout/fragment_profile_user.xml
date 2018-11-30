@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image_profile"
+                android:id="@+id/image_profile_user"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/cute_profile"
@@ -102,6 +102,21 @@
             android:layout_toRightOf="@id/contactProfile"
             android:layout_alignBottom="@id/contactProfile"
             android:layout_alignLeft="@id/tvEmailProfile"/>
+
+        <ImageView
+            android:id="@+id/genderProfile"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/gender"
+            android:layout_below="@id/contactProfile"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/tvGenderProfile"
+            style="@style/tvStyle"
+            android:text="Perempuan"
+            android:layout_toRightOf="@id/genderProfile"
+            android:layout_alignBottom="@id/genderProfile"
+            android:layout_alignLeft="@id/tvContactProfile"/>
 
     </RelativeLayout>
 

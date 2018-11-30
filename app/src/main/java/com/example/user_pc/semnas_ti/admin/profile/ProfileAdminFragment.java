@@ -1,5 +1,6 @@
 package com.example.user_pc.semnas_ti.admin.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.user_pc.semnas_ti.R;
+import com.example.user_pc.semnas_ti.admin.profile.editprofile.EditProfileAdminActivity;
 import com.example.user_pc.semnas_ti.api.ApiClient;
 import com.example.user_pc.semnas_ti.bantuan.ConstantURL;
 //import com.example.user_pc.semnas_ti.bantuan.PreferencesHelper;
@@ -25,8 +27,6 @@ public class ProfileAdminFragment extends Fragment implements View.OnClickListen
     protected Button btnEdit;
     protected ProfileAdminPresenter presenter;
     Profile profile;
-
-//    private PreferencesHelper preferencesHelper;
 
     @Nullable
     @Override
@@ -47,23 +47,6 @@ public class ProfileAdminFragment extends Fragment implements View.OnClickListen
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        preferencesHelper = new PreferencesHelper(getContext());
-//
-//        tvName.setText(preferencesHelper.getName());
-//        tvEmail.setText(preferencesHelper.getEmail());
-//        tvContact.setText(preferencesHelper.getContact());
-//        if (preferencesHelper.getGender()==0){
-//            tvGender.setText("Perempuan");
-//        }else {
-//            tvGender.setText("Laki-laki");
-//        }
-//
-//        btnEdit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getContext(), "Edit Profile", Toast.LENGTH_SHORT).show();
-//            }
-//        });
         presenter = new ProfileAdminPresenter(this, ApiClient.getService(getContext()));
         presenter.showProfile();
 
@@ -75,7 +58,13 @@ public class ProfileAdminFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_edit_profile_admin:
-                Toast.makeText(getContext(), "Edit Profile", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Edit Profile", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(EditProfileAdminActivity.KEY_PROFILE, profile);
+                Intent intent = new Intent(getContext(), EditProfileAdminActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                break;
         }
     }
 
