@@ -12,6 +12,7 @@ import com.example.user_pc.semnas_ti.R;
 import com.example.user_pc.semnas_ti.auth.faquser.FaqFragment;
 import com.example.user_pc.semnas_ti.auth.login.LoginFragment;
 import com.example.user_pc.semnas_ti.auth.register.SignUpFragment;
+import com.example.user_pc.semnas_ti.bantuan.DbHelper;
 
 public class LoginRegisterActivity extends AppCompatActivity{
 
@@ -27,7 +28,6 @@ public class LoginRegisterActivity extends AppCompatActivity{
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new LoginFragment()).commit();
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

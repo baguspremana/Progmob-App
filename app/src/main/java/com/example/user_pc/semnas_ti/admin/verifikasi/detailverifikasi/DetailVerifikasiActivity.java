@@ -1,6 +1,7 @@
 package com.example.user_pc.semnas_ti.admin.verifikasi.detailverifikasi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ public class DetailVerifikasiActivity extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_verifikasi);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
         getSupportActionBar().hide();
 

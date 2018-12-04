@@ -89,7 +89,7 @@ public class BayarTicketAdapter extends RecyclerView.Adapter<BayarTicketAdapter.
                 tvPaymentStatus.setText("Belum");
             }
 
-            imgPhoto.setImageResource(R.drawable.ticket_satu);
+            imgPhoto.setImageResource(R.drawable.invoice);
 
         }
     }

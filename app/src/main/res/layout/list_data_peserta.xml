@@ -7,21 +7,21 @@
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
     android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    android:elevation="4dp">
+    android:clickable="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:background="@drawable/et_bg">
+        android:padding="10dp"
+        android:background="@drawable/et_bg"
+        android:elevation="4dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_data_peserta"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="90dp"
             android:src="@drawable/user_icon"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="25dp"
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"/>
 
@@ -36,23 +36,24 @@
             style="@style/tvStyle"
             android:text="admin@mail.com"
             android:layout_below="@id/tv_nama_peserta"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/iv_data_peserta"/>
 
         <TextView
             android:id="@+id/tv_kontak_peserta"
             style="@style/tvStyle"
             android:text="087654312"
-            android:layout_toRightOf="@id/tv_email_peserta"
-            android:layout_marginStart="20dp"/>
+            android:layout_below="@id/tv_email_peserta"
+            android:layout_alignLeft="@id/tv_email_peserta"
+            android:layout_marginTop="3dp"/>
 
         <TextView
             android:id="@+id/tv_konsum_peserta"
             style="@style/tvStyle"
             android:text="Veget"
-            android:layout_alignStart="@id/tv_kontak_peserta"
             android:layout_below="@id/tv_kontak_peserta"
-            android:layout_alignTop="@id/tv_email_peserta"/>
+            android:layout_alignLeft="@id/tv_kontak_peserta"
+            android:layout_marginTop="3dp"/>
 
     </RelativeLayout>
 

@@ -1,5 +1,6 @@
 package com.example.user_pc.semnas_ti.admin.profile;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,6 +28,7 @@ public class ProfileAdminFragment extends Fragment implements View.OnClickListen
     protected Button btnEdit;
     protected ProfileAdminPresenter presenter;
     Profile profile;
+    ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -46,6 +48,9 @@ public class ProfileAdminFragment extends Fragment implements View.OnClickListen
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Now Loading...");
 
         presenter = new ProfileAdminPresenter(this, ApiClient.getService(getContext()));
         presenter.showProfile();
@@ -70,12 +75,12 @@ public class ProfileAdminFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void showLoading() {
-        Toast.makeText(getContext(), "Now Loading", Toast.LENGTH_SHORT).show();
+        progressDialog.show();
     }
 
     @Override
     public void hideLoading() {
-        Toast.makeText(getContext(), "Loaded", Toast.LENGTH_SHORT).show();
+        progressDialog.hide();
     }
 
     @Override

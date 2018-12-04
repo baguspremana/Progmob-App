@@ -1,6 +1,7 @@
 package com.example.user_pc.semnas_ti.admin;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +22,7 @@ import com.example.user_pc.semnas_ti.admin.dashboardadmin.DashboardFragment;
 import com.example.user_pc.semnas_ti.admin.dataadmin.AdminFragment;
 import com.example.user_pc.semnas_ti.admin.datafaq.FaqAdminFragment;
 import com.example.user_pc.semnas_ti.admin.infoseminar.InfoSeminarFragment;
+import com.example.user_pc.semnas_ti.admin.logverifikasi.LogVerifikasiFragment;
 import com.example.user_pc.semnas_ti.admin.profile.ProfileAdminFragment;
 import com.example.user_pc.semnas_ti.admin.scanticket.ScanFragment;
 import com.example.user_pc.semnas_ti.admin.verifikasi.VerifikasiFragment;
@@ -45,6 +47,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -135,6 +138,10 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
             case R.id.nav_verifikasi:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin,
                         new VerifikasiFragment()).commit();
+                break;
+            case R.id.nav_verifikasi_log:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin,
+                        new LogVerifikasiFragment()).commit();
                 break;
             case R.id.nav_ticket_scanner:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_admin,

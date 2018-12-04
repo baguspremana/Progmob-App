@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/et_bg">
+
+        <ImageView
+            android:id="@+id/icon_log"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/user_icon"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:id="@+id/tv_log_verif_admin"
+            style="@style/tvStyle"
+            android:text="Agus"
+            android:layout_toRightOf="@id/icon_log"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_log_verif_email"
+            style="@style/tvStyle"
+            android:text="agus@mail.com"
+            android:layout_below="@id/tv_log_verif_admin"
+            android:layout_marginTop="4dp"
+            android:layout_alignLeft="@id/tv_log_verif_admin"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_log_verif_created"
+            style="@style/tvStyle"
+            android:text="31-11-2018"
+            android:layout_below="@id/tv_log_verif_email"
+            android:layout_marginTop="4dp"
+            android:layout_alignLeft="@id/tv_log_verif_admin"
+            android:layout_marginEnd="5dp"/>
+
+        <LinearLayout
+            android:id="@+id/bar_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/icon_log_verif_status"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_check"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/tv_log_verif_status"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Terkirim"
+                android:textSize="10sp"
+                android:textColor="#000"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -2,6 +2,7 @@ package com.example.user_pc.semnas_ti.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.BaseColumns;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -25,7 +26,7 @@ public class FaqUserResponse implements Parcelable {
 	@SerializedName("id")
 	private int id;
 
-	protected FaqUserResponse(Parcel in) {
+	public FaqUserResponse(Parcel in) {
 		question = in.readString();
 		answer = in.readString();
 		updatedAt = in.readString();
@@ -45,6 +46,14 @@ public class FaqUserResponse implements Parcelable {
 			return new FaqUserResponse[size];
 		}
 	};
+
+	public FaqUserResponse(int id, int userId, String question, String answer, String updated) {
+		this.id = id;
+		this.userId = userId;
+		this.question = question;
+		this.answer = answer;
+		this.updatedAt = updated;
+	}
 
 	public void setQuestion(String question){
 		this.question = question;
@@ -120,5 +129,14 @@ public class FaqUserResponse implements Parcelable {
 		dest.writeInt(userId);
 		dest.writeString(createdAt);
 		dest.writeInt(id);
+	}
+
+	public static class Entry implements BaseColumns {
+		public static final String TABLE_NAME="faqs";
+		public static final String COLUMN_ID="id";
+		public static final String COLUMN_USER_ID="user_id";
+		public static final String COLUMN_QUESTION="question";
+		public static final String COLUMN_ANSWER="answer";
+		public static final String COLUMN_UPDATED="updated_at";
 	}
 }

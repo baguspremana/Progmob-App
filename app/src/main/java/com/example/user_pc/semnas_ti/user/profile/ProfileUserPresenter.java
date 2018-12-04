@@ -33,6 +33,7 @@ public class ProfileUserPresenter {
                     @Override
                     public void onFailure(Call<Profile> call, Throwable t) {
                         view.onFailure(t);
+                        view.hideLoading();
                     }
                 });
     }

@@ -15,6 +15,9 @@
                 <item android:id="@+id/nav_verifikasi"
                     android:icon="@drawable/ic_view_list"
                     android:title="Verifikasi"/>
+                <item android:id="@+id/nav_verifikasi_log"
+                    android:icon="@drawable/ic_view_list"
+                    android:title="Log Verifikasi"/>
                 <item android:id="@+id/nav_ticket_scanner"
                     android:icon="@drawable/ic_scanner"
                     android:title="Scan Tiket"/>

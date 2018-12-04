@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -50,7 +51,7 @@ public class EditProfileAdminActivity extends AppCompatActivity {
 
     Profile profile;
 
-    int gender = 0;
+    int userGender;
 
     private static final int IMG_REQUEST = 777;
     private Bitmap bitmap;
@@ -206,16 +207,14 @@ public class EditProfileAdminActivity extends AppCompatActivity {
         RequestBody name = RequestBody.create(okhttp3.MultipartBody.FORM, etName.getText().toString());
         RequestBody email = RequestBody.create(okhttp3.MultipartBody.FORM, etEmail.getText().toString());
         RequestBody contact = RequestBody.create(okhttp3.MultipartBody.FORM, etKontak.getText().toString());
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.rb_edit_female){
-                    gender = 0;
-                }else if(checkedId == R.id.rb_edit_male){
-                    gender = 1;
-                }
-            }
-        });
+        int selectedID = radioGroup.getCheckedRadioButtonId();
+
+        if ( selectedID == R.id.rb_edit_female){
+            userGender = 0;
+        }else if (selectedID == R.id.rb_edit_male){
+            userGender = 1;
+        }
+        RequestBody gender = RequestBody.create(MultipartBody.FORM, String.valueOf(userGender));
         ApiClient.getService(this)
                 .saveProfile(name, email, body, contact, gender)
                 .enqueue(new Callback<Profile>() {

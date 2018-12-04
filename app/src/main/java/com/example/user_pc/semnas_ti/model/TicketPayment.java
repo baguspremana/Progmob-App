@@ -2,6 +2,7 @@ package com.example.user_pc.semnas_ti.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.BaseColumns;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -34,7 +35,7 @@ public class TicketPayment implements Parcelable {
 	@SerializedName("status")
 	private int status;
 
-	protected TicketPayment(Parcel in) {
+	public TicketPayment(Parcel in) {
 		updatedAt = in.readString();
 		userId = in.readInt();
 		etc = in.readString();
@@ -57,6 +58,18 @@ public class TicketPayment implements Parcelable {
 			return new TicketPayment[size];
 		}
 	};
+
+	public TicketPayment(int id, int user_id, int status, String photo, String etc, int jumlah, String total, String created, String updated) {
+		this.id=id;
+		this.userId=user_id;
+		this.status=status;
+		this.photo=photo;
+		this.etc=etc;
+		this.jumlahTicket=jumlah;
+		this.totalHarga=total;
+		this.createdAt=created;
+		this.updatedAt=updated;
+	}
 
 	public void setUpdatedAt(String updatedAt){
 		this.updatedAt = updatedAt;
@@ -162,5 +175,18 @@ public class TicketPayment implements Parcelable {
 		dest.writeString(totalHarga);
 		dest.writeInt(id);
 		dest.writeInt(status);
+	}
+
+	public static class Entry implements BaseColumns{
+		public static final String TABLE_NAME="tickets";
+		public static final String COLUMN_ID="id";
+		public static final String COLUMN_USER_ID="user_id";
+		public static final String COLUMN_STATUS="status";
+		public static final String COLUMN_PHOTO="photo";
+		public static final String COLUMN_ETC="etc";
+		public static final String COLUMN_JUMLAH="jumlah_ticket";
+		public static final String COLUMN_TOTAL_HARGA="total_harga";
+		public static final String COLUMN_CREATED_AT="created_at";
+		public static final String COLUMN_UPDATED_AT="updated_at";
 	}
 }

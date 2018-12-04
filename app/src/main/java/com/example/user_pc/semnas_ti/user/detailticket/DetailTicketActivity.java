@@ -86,8 +86,10 @@ public class DetailTicketActivity extends AppCompatActivity implements View.OnCl
         tvTanggal.setText(tanggal);
         if (ticket.getStatus() == 2) {
             tvStatus.setText("Terverifikasi");
+            btnDelete.setVisibility(View.GONE);
         } else {
             tvStatus.setText("Belum Terverifikasi");
+            btnDelete.setVisibility(View.VISIBLE);
         }
 
         Glide.with(this).load(ConstantURL.URL.qrCode(ticket.getQrcodePhoto())).into(imgQR);

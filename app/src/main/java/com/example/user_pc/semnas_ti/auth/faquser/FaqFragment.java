@@ -1,6 +1,7 @@
 package com.example.user_pc.semnas_ti.auth.faquser;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,16 +20,19 @@ import android.widget.Toast;
 import com.example.user_pc.semnas_ti.R;
 import com.example.user_pc.semnas_ti.api.ApiClient;
 import com.example.user_pc.semnas_ti.auth.faquser.detailfaquser.DetailFaqUserActivity;
+import com.example.user_pc.semnas_ti.bantuan.DbHelper;
 import com.example.user_pc.semnas_ti.model.FaqUserResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FaqFragment extends Fragment implements FaqAdapter.OnClickListener, FaqView{
-    List<FaqUserResponse> faqUserResponses;
+    List<FaqUserResponse> faqUserResponses=new ArrayList<>();
     private RecyclerView rvFaq;
     private TextView tvKosong;
     private FaqAdapter adapter;
     private FaqPresenter presenter;
+    private ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -45,6 +49,10 @@ public class FaqFragment extends Fragment implements FaqAdapter.OnClickListener,
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Now Loading...");
+
+        callFAQLocal();
         presenter = new FaqPresenter(this, ApiClient.getService(getContext()));
         presenter.showFaqUser();
     }
@@ -74,12 +82,12 @@ public class FaqFragment extends Fragment implements FaqAdapter.OnClickListener,
 
     @Override
     public void showLoading() {
-        Toast.makeText(getContext(), "Now Loading", Toast.LENGTH_SHORT).show();
+        progressDialog.show();
     }
 
     @Override
     public void hideLoading() {
-        Toast.makeText(getContext(), "Loaded", Toast.LENGTH_SHORT).show();
+        progressDialog.hide();
     }
 
     @Override
@@ -90,7 +98,15 @@ public class FaqFragment extends Fragment implements FaqAdapter.OnClickListener,
         }else {
             tvKosong.setVisibility(View.GONE);
             rvFaq.setVisibility(View.VISIBLE);
+            DbHelper dbHelper = new DbHelper(getContext());
+
+            dbHelper.deleteFAQ();
             this.faqUserResponses = faqUserResponses;
+
+            for (FaqUserResponse faqUserResponse:faqUserResponses){
+                dbHelper.insertFAQ(faqUserResponse.getId(), faqUserResponse.getUserId(), faqUserResponse.getQuestion(),
+                        faqUserResponse.getAnswer(), faqUserResponse.getUpdatedAt());
+            }
             adapter = new FaqAdapter(getContext(), faqUserResponses);
             adapter.setOnClickListener(this);
             rvFaq.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -105,7 +121,18 @@ public class FaqFragment extends Fragment implements FaqAdapter.OnClickListener,
     }
 
     @Override
-    public void onFailure(Throwable t) {
-        Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+    public void onFailure() {
+        Toast.makeText(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT).show();
+    }
+
+    private void callFAQLocal(){
+        DbHelper dbHelper=new DbHelper(getContext());
+        faqUserResponses=dbHelper.selectFAQ();
+
+        tvKosong.setVisibility(View.GONE);
+        adapter = new FaqAdapter(getContext(), faqUserResponses);
+        adapter.setOnClickListener(this);
+        rvFaq.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvFaq.setAdapter(adapter);
     }
 }

@@ -19,6 +19,7 @@ public class TicketPresenter {
     }
 
     public void getTickets(){
+        view.showLoading();
         service.allTicket()
                 .enqueue(new Callback<List<Ticket>>() {
                     @Override
@@ -28,11 +29,13 @@ public class TicketPresenter {
                         }else {
                             view.onError();
                         }
+                        view.hideLoading();
                     }
 
                     @Override
                     public void onFailure(Call<List<Ticket>> call, Throwable t) {
-                        view.onFailure(t);
+                        view.onFailure();
+                        view.hideLoading();
                     }
                 });
     }

@@ -2,6 +2,7 @@ package com.example.user_pc.semnas_ti.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.BaseColumns;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -149,4 +150,5 @@ public class FaqResponse implements Parcelable {
 		dest.writeInt(id);
 		dest.writeString(email);
 	}
+
 }

@@ -34,7 +34,8 @@ public class FaqPresenter {
 
                     @Override
                     public void onFailure(Call<List<FaqUserResponse>> call, Throwable t) {
-                        view.onFailure(t);
+                        view.onFailure();
+                        view.hideLoading();
                     }
                 });
     }

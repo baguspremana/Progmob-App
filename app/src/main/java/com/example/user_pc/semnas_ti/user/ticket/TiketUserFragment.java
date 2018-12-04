@@ -1,22 +1,22 @@
 package com.example.user_pc.semnas_ti.user.ticket;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.user_pc.semnas_ti.R;
 import com.example.user_pc.semnas_ti.api.ApiClient;
+import com.example.user_pc.semnas_ti.bantuan.DbHelper;
 import com.example.user_pc.semnas_ti.model.Ticket;
 import com.example.user_pc.semnas_ti.user.addticket.AddTicketAcitivity;
 import com.example.user_pc.semnas_ti.user.detailticket.DetailTicketActivity;
@@ -28,20 +28,16 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
     private RecyclerView rvTicket;
     private TicketAdapter adapter;
     private TicketPresenter presenter;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
+    ProgressDialog progressDialog;
+    private FloatingActionButton floatingActionButton;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_tiket_user, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Daftar Tiket");
+
         rvTicket=view.findViewById(R.id.rv_tiket);
+        floatingActionButton=view.findViewById(R.id.fab_add_ticket);
 
         return view;
     }
@@ -50,27 +46,20 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        presenter = new TicketPresenter(this, ApiClient.getService(getContext()));
-        presenter.getTickets();
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Now Loading...");
 
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.fragment_ticket_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.add_ticket:
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(getContext(), AddTicketAcitivity.class);
                 startActivity(intent);
+            }
+        });
 
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        callTicketLocal();
+        presenter = new TicketPresenter(this, ApiClient.getService(getContext()));
+        presenter.getTickets();
 
     }
 
@@ -85,21 +74,55 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
     }
 
     @Override
+    public void showLoading() {
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        progressDialog.hide();
+    }
+
+    @Override
     public void onSuccess(List<Ticket> ticketList) {
-        this.ticketList=ticketList;
-        adapter = new TicketAdapter(getContext(), ticketList);
-        adapter.setOnClickListener(this);
-        rvTicket.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvTicket.setAdapter(adapter);
+        if (ticketList.isEmpty()){
+            Toast.makeText(getContext(), "Kosong", Toast.LENGTH_SHORT).show();
+        }else {
+            DbHelper dbHelper = new DbHelper(getContext());
+            dbHelper.deleteTicketDetail();
+
+            this.ticketList=ticketList;
+
+            for (Ticket ticket:ticketList){
+                dbHelper.insertTicketDetail(ticket.getId(), ticket.getQrcodePhoto(), ticket.getBookingName(), ticket.getBookingEmail(),
+                        ticket.getBookingContact(), ticket.getBookingVeget(), ticket.getBookingInstitution(), ticket.getBookingPrice(),
+                        ticket.getCreatedAt(), ticket.getStatus());
+            }
+            adapter = new TicketAdapter(getContext(), ticketList);
+            adapter.setOnClickListener(this);
+            rvTicket.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvTicket.setAdapter(adapter);
+        }
+
     }
 
     @Override
     public void onError() {
-
+        Toast.makeText(getContext(), "Response Failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onFailure(Throwable t) {
+    public void onFailure() {
+        Toast.makeText(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT).show();
+    }
 
+    private void callTicketLocal(){
+        DbHelper dbHelper=new DbHelper(getContext());
+        ticketList=dbHelper.selectTicketDetail();
+
+        adapter = new TicketAdapter(getContext(), ticketList);
+        adapter.setOnClickListener(this);
+        rvTicket.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvTicket.setAdapter(adapter);
     }
 }

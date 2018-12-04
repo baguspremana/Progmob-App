@@ -84,4 +84,14 @@ public class DateFormated {
         }
         return new SimpleDateFormat("HH:mm").format(date);
     }
+
+    public  static String setPelaksanaan(String oldDate){
+        Date date= null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(oldDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return new SimpleDateFormat("dd MMMM yyyy").format(date);
+    }
 }

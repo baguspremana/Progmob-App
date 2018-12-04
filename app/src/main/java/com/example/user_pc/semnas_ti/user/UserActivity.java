@@ -1,5 +1,6 @@
 package com.example.user_pc.semnas_ti.user;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.bigscreen.iconictabbar.view.IconicTab;
+import com.bigscreen.iconictabbar.view.IconicTabBar;
 import com.example.user_pc.semnas_ti.R;
 import com.example.user_pc.semnas_ti.api.ApiClient;
 import com.example.user_pc.semnas_ti.bantuan.PreferencesHelper;
@@ -23,19 +26,24 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserActivity extends AppCompatActivity {
+
+    private static final String TAG = UserActivity.class.getSimpleName();
+
     PreferencesHelper preferencesHelper;
     Profile profile;
+    private IconicTabBar iconicTabBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
         preferencesHelper = new PreferencesHelper(this);
         /*Toast.makeText(this, preferencesHelper.getFCMToken(), Toast.LENGTH_SHORT).show();*/
         Log.d("fcm", preferencesHelper.getFCMToken());
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_user);
+        /*BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_user);
         bottomNavigationView.setOnNavigationItemSelectedListener(navUserListener);
 
         Bundle extra = getIntent().getExtras();
@@ -48,17 +56,66 @@ public class UserActivity extends AppCompatActivity {
                 bottomNavigationView.setSelectedItemId(R.id.nav_uploadPembayaran);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
                         new BayarTiketFragment()).commit();
-            }else if (extra.containsKey("profile")){
-                bottomNavigationView.setSelectedItemId(R.id.nav_profile);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
-                        new ProfileUserFragment()).commit();
             }
         }else{
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
                     new HomeUserFragment()).commit();
+        }*/
+
+        iconicTabBar = findViewById(R.id.bottom_navigation_user);
+
+        Bundle extra = getIntent().getExtras();
+        if (extra != null){
+            if (extra.containsKey("fragment")){
+                iconicTabBar.setSelectedTab(R.id.nav_pesanTiket);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
+                        new TiketUserFragment()).commit();
+            }else if (extra.containsKey("payment")){
+                iconicTabBar.setSelectedTab(R.id.nav_uploadPembayaran);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
+                        new BayarTiketFragment()).commit();
+            }
+
+        }else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
+                    new HomeUserFragment()).commit();
         }
 
+        initViews();
         showProfile();
+    }
+
+    private void initViews() {
+        iconicTabBar.setOnTabSelectedListener(new IconicTabBar.OnTabSelectedListener() {
+            @Override
+            public void onSelected(IconicTab tab, int position) {
+                Log.d(TAG, "selected tab on= "+position);
+                Fragment selectedUserFragment = null;
+                int tabId = tab.getId();
+                switch (tabId){
+                    case R.id.nav_home:
+                        selectedUserFragment = new HomeUserFragment();
+                        break;
+                    case R.id.nav_pesanTiket:
+                        selectedUserFragment = new TiketUserFragment();
+                        break;
+                    case R.id.nav_uploadPembayaran:
+                        selectedUserFragment = new BayarTiketFragment();
+                        break;
+                    case R.id.nav_profile:
+                        selectedUserFragment = new ProfileUserFragment();
+                        break;
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_user,
+                        selectedUserFragment).commit();
+            }
+
+            @Override
+            public void onUnselected(IconicTab tab, int position) {
+                Log.d(TAG, "unselected tab on= "+position);
+            }
+        });
     }
 
     private void showProfile() {
@@ -110,7 +167,7 @@ public class UserActivity extends AppCompatActivity {
                 });
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navUserListener =
+    /*private BottomNavigationView.OnNavigationItemSelectedListener navUserListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -137,5 +194,5 @@ public class UserActivity extends AppCompatActivity {
 
                     return true;
                 }
-            };
+            };*/
 }

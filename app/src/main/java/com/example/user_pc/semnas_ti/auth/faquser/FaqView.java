@@ -9,5 +9,5 @@ public interface FaqView {
     void hideLoading();
     void onSuccess(List<FaqUserResponse> faqUserResponses);
     void onError();
-    void onFailure(Throwable t);
+    void onFailure();
 }

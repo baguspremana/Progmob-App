@@ -2,6 +2,7 @@ package com.example.user_pc.semnas_ti.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.BaseColumns;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -55,7 +56,7 @@ public class Ticket implements Parcelable {
 	@SerializedName("status")
 	private int status;
 
-	protected Ticket(Parcel in) {
+	public Ticket(Parcel in) {
 		bookingInstitution = in.readString();
 		bookingName = in.readString();
 		bookingEmail = in.readString();
@@ -84,6 +85,19 @@ public class Ticket implements Parcelable {
 			return new Ticket[size];
 		}
 	};
+
+	public Ticket(int id, String qrcode, String name, String email, String contact, int veget, String instansi, int price, String created, int status) {
+		this.id=id;
+		this.qrcodePhoto=qrcode;
+		this.bookingName=name;
+		this.bookingEmail=email;
+		this.bookingContact=contact;
+		this.bookingVeget=veget;
+		this.bookingInstitution=instansi;
+		this.bookingPrice=price;
+		this.createdAt=created;
+		this.status=status;
+	}
 
 	public void setBookingInstitution(String bookingInstitution){
 		this.bookingInstitution = bookingInstitution;
@@ -258,5 +272,20 @@ public class Ticket implements Parcelable {
 		dest.writeInt(id);
 		dest.writeString(bookingContact);
 		dest.writeInt(status);
+	}
+
+	public static class Entry implements BaseColumns{
+		public static final String TABLE_NAME="ticket_details";
+		public static final String COLUMN_ID="id";
+		public static final String COLUMN_BOOKING_ID="booking_id";
+		public static final String COLUMN_QR_CODE="qrcode_photo";
+		public static final String COLUMN_BOOKING_NAME="booking_name";
+		public static final String COLUMN_BOOKING_EMAIL="booking_email";
+		public static final String COLUMN_BOOKING_CONTACT="booking_contact";
+		public static final String COLUMN_BOOKING_VEGET="booking_veget";
+		public static final String COLUMN_BOOKING_INSTITUTION="booking_institution";
+		public static final String COLUMN_BOOKING_PRICE="booking_price";
+		public static final String COLUMN_BOOKING_ADD="created_at";
+		public static final String COLUMN_STATUS="status";
 	}
 }

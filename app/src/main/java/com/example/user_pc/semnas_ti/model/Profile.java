@@ -2,6 +2,7 @@ package com.example.user_pc.semnas_ti.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.BaseColumns;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -37,7 +38,7 @@ public class Profile implements Parcelable {
 	@SerializedName("email")
 	private String email;
 
-	protected Profile(Parcel in) {
+	public Profile(Parcel in) {
 		role = in.readInt();
 		gender = in.readInt();
 		updatedAt = in.readString();
@@ -61,6 +62,15 @@ public class Profile implements Parcelable {
 			return new Profile[size];
 		}
 	};
+
+	public Profile(int id, String name, String email, String contact, int gender, String photo) {
+		this.id=id;
+		this.name=name;
+		this.email=email;
+		this.contact=contact;
+		this.gender=gender;
+		this.photoProfile=photo;
+	}
 
 	public void setRole(int role){
 		this.role = role;
@@ -176,5 +186,15 @@ public class Profile implements Parcelable {
 		dest.writeString(createdAt);
 		dest.writeInt(id);
 		dest.writeString(email);
+	}
+
+	public static class Entry implements BaseColumns{
+		public static final String TABLE_NAME="profile";
+		public static final String COLUMN_ID="id";
+		public static final String COLUMN_NAME="name";
+		public static final String COLUMN_EMAIL="email";
+		public static final String COLUMN_CONTACT="contact";
+		public static final String COLUMN_GENDER="gender";
+		public static final String COLUMN_PHOTO="photo_profile";
 	}
 }

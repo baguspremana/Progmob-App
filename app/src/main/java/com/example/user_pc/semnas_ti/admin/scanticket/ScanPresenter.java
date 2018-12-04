@@ -29,6 +29,7 @@ public class ScanPresenter {
                         }else {
                             view.onError();
                         }
+                        view.hideLoading();
                     }
 
                     @Override

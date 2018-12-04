@@ -77,14 +77,14 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
             tvEmail.setText(ticket.getBookingEmail());
             tvPrice.setText(bookingPrice);
             tvTanggal.setText(tanggal);
-            if (ticket.getStatus()== 2) {
-                imgStatus.setImageResource(R.drawable.ic_check);
-                tvStatus.setText("Verif");
-            }else {
+            if (ticket.getStatus()== 1) {
                 imgStatus.setImageResource(R.drawable.ic_close);
                 tvStatus.setText("Belum");
+            }else {
+                imgStatus.setImageResource(R.drawable.ic_check);
+                tvStatus.setText("Verif");
             }
-            imgTicket.setImageResource(R.drawable.ticket_user);
+            imgTicket.setImageResource(R.drawable.ticket_tiga);
         }
     }
 

@@ -19,6 +19,7 @@ public class BayarTicketPresenter {
     }
 
     public void getPaymentTickets(){
+        view.showLoading();
         service.paymentTicket()
                 .enqueue(new Callback<List<TicketPayment>>() {
                     @Override
@@ -28,11 +29,13 @@ public class BayarTicketPresenter {
                         }else {
                             view.onError();
                         }
+                        view.hideLoading();
                     }
 
                     @Override
                     public void onFailure(Call<List<TicketPayment>> call, Throwable t) {
                         view.onFailure(t);
+                        view.hideLoading();
                     }
                 });
     }

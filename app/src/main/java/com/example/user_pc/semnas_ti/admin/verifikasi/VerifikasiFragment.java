@@ -1,5 +1,6 @@
 package com.example.user_pc.semnas_ti.admin.verifikasi;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,6 +27,7 @@ public class VerifikasiFragment extends Fragment implements VerifikasiAdapter.On
     private TextView tvKosong;
     private VerifikasiAdapter adapter;
     private VerifikasiPresenter presenter;
+    ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -39,6 +41,9 @@ public class VerifikasiFragment extends Fragment implements VerifikasiAdapter.On
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Now Loading...");
 
         presenter = new VerifikasiPresenter(this, ApiClient.getService(getContext()));
         presenter.dataVerifikasi();
@@ -56,12 +61,12 @@ public class VerifikasiFragment extends Fragment implements VerifikasiAdapter.On
 
     @Override
     public void showLoading() {
-        Toast.makeText(getContext(), "Now Loading", Toast.LENGTH_SHORT).show();
+        progressDialog.show();
     }
 
     @Override
     public void hideLoading() {
-        Toast.makeText(getContext(), "Loaded", Toast.LENGTH_SHORT).show();
+        progressDialog.hide();
     }
 
     @Override

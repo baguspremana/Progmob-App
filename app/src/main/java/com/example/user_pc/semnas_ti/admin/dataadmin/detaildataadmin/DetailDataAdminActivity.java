@@ -1,5 +1,6 @@
 package com.example.user_pc.semnas_ti.admin.dataadmin.detaildataadmin;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;

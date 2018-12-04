@@ -1,5 +1,6 @@
 package com.example.user_pc.semnas_ti.admin.datafaq;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,6 +31,7 @@ public class FaqAdminFragment extends Fragment implements FaqAdminAdapter.OnClic
     private TextView tvKosong;
     private FaqAdminAdapter adapter;
     private FaqAdminPresenter presenter;
+    ProgressDialog progressDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +51,9 @@ public class FaqAdminFragment extends Fragment implements FaqAdminAdapter.OnClic
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Now Loading...");
 
         presenter = new FaqAdminPresenter(this, ApiClient.getService(getContext()));
         presenter.dataFAQ();
@@ -85,12 +90,12 @@ public class FaqAdminFragment extends Fragment implements FaqAdminAdapter.OnClic
 
     @Override
     public void showLoading() {
-        Toast.makeText(getContext(), "Now Loading", Toast.LENGTH_SHORT).show();
+        progressDialog.show();
     }
 
     @Override
     public void hideLoading() {
-        Toast.makeText(getContext(), "Loaded", Toast.LENGTH_SHORT).show();
+        progressDialog.hide();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.user_pc.semnas_ti.user.profile;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,8 +19,11 @@ import com.example.user_pc.semnas_ti.R;
 import com.example.user_pc.semnas_ti.api.ApiClient;
 import com.example.user_pc.semnas_ti.auth.LoginRegisterActivity;
 import com.example.user_pc.semnas_ti.bantuan.ConstantURL;
+import com.example.user_pc.semnas_ti.bantuan.DbHelper;
 import com.example.user_pc.semnas_ti.bantuan.PreferencesHelper;
 import com.example.user_pc.semnas_ti.model.Profile;
+
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -35,6 +39,7 @@ public class ProfileUserFragment extends Fragment implements ProfileUserView {
     Profile profile;
 
     private PreferencesHelper preferencesHelper;
+    ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -58,6 +63,10 @@ public class ProfileUserFragment extends Fragment implements ProfileUserView {
 
         preferencesHelper = new PreferencesHelper(getContext());
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Now Loading...");
+
+        showProfileLocal();
         presenter = new ProfileUserPresenter(this, ApiClient.getService(getContext()));
         presenter.showProfile();
 
@@ -85,17 +94,23 @@ public class ProfileUserFragment extends Fragment implements ProfileUserView {
 
     @Override
     public void showLoading() {
-        Toast.makeText(getContext(), "Now Loading", Toast.LENGTH_SHORT).show();
+        progressDialog.show();
     }
 
     @Override
     public void hideLoading() {
-        Toast.makeText(getContext(), "Loaded", Toast.LENGTH_SHORT).show();
+        progressDialog.hide();
     }
 
     @Override
     public void onSuccess(Profile profile) {
+        DbHelper dbHelper = new DbHelper(getContext());
+        dbHelper.deleteProfile();
+
         this.profile = profile;
+        dbHelper.insertProfile(profile.getId(), profile.getName(), profile.getEmail(), profile.getContact(),
+                profile.getGender(), profile.getPhotoProfile());
+
         profileName.setText(profile.getName());
         emailProfile.setText(profile.getEmail());
         contactProfile.setText(profile.getContact());
@@ -107,8 +122,8 @@ public class ProfileUserFragment extends Fragment implements ProfileUserView {
 
         if (profile.getPhotoProfile()==null){
             imageView.setImageResource(R.drawable.cute_profile);
-        }else if (profile.getPhotoProfile()!=null){
-            Glide.with(getContext()).load(ConstantURL.URL.imgUser(profile.getPhotoProfile())).into(imageView);
+        }else {
+            Glide.with((getContext())).load(ConstantURL.URL.imgUser(profile.getPhotoProfile())).into(imageView);
         }
     }
 
@@ -119,6 +134,26 @@ public class ProfileUserFragment extends Fragment implements ProfileUserView {
 
     @Override
     public void onFailure(Throwable t) {
-        Toast.makeText(getContext(), "Error"+t, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showProfileLocal(){
+        DbHelper dbHelper=new DbHelper(getContext());
+        profile=dbHelper.selectProfile();
+
+        profileName.setText(profile.getName());
+        emailProfile.setText(profile.getEmail());
+        contactProfile.setText(profile.getContact());
+        if (profile.getGender()==1){
+            genderProfile.setText("Laki-Laki");
+        }else {
+            genderProfile.setText("Perempuan");
+        }
+
+        if (profile.getPhotoProfile()==null){
+            imageView.setImageResource(R.drawable.cute_profile);
+        }else {
+            Glide.with((getContext())).load(ConstantURL.URL.imgUser(profile.getPhotoProfile())).into(imageView);
+        }
     }
 }

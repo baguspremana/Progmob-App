@@ -1,9 +1,11 @@
 package com.example.user_pc.semnas_ti.api;
 
+import com.example.user_pc.semnas_ti.model.DashboardAdminResponse;
 import com.example.user_pc.semnas_ti.model.DataAdmin;
 import com.example.user_pc.semnas_ti.model.FaqResponse;
 import com.example.user_pc.semnas_ti.model.FaqUserResponse;
 import com.example.user_pc.semnas_ti.model.InfoSeminarResponse;
+import com.example.user_pc.semnas_ti.model.LogVerifikasiResponse;
 import com.example.user_pc.semnas_ti.model.PesertaResponse;
 import com.example.user_pc.semnas_ti.model.Profile;
 import com.example.user_pc.semnas_ti.model.Response;
@@ -194,6 +196,12 @@ public interface ApiService {
             @Part("email")RequestBody email,
             @Part MultipartBody.Part photo_profile,
             @Part("contact")RequestBody contact,
-            @Part("gender") int gender
+            @Part("gender")RequestBody gender
     );
+
+    @GET("admin/dashboard")
+    Call<DashboardAdminResponse> showDashboard();
+
+    @GET("admin/log/verifikasi")
+    Call<List<LogVerifikasiResponse>> showLog();
 }

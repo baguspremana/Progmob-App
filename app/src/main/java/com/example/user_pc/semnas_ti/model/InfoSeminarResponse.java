@@ -2,6 +2,7 @@ package com.example.user_pc.semnas_ti.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.BaseColumns;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -34,7 +35,7 @@ public class InfoSeminarResponse implements Parcelable {
 	@SerializedName("ticket_available")
 	private int ticketAvailable;
 
-	protected InfoSeminarResponse(Parcel in) {
+	public InfoSeminarResponse(Parcel in) {
 		seminarSchedule = in.readString();
 		updatedAt = in.readString();
 		seminarDescription = in.readString();
@@ -57,6 +58,16 @@ public class InfoSeminarResponse implements Parcelable {
 			return new InfoSeminarResponse[size];
 		}
 	};
+
+	public InfoSeminarResponse(int id, String name, String theme, String desc, String schedule, String location, int tiket) {
+		this.id=id;
+		this.seminarName=name;
+		this.seminarTheme=theme;
+		this.seminarDescription=desc;
+		this.seminarSchedule=schedule;
+		this.seminarLocation=location;
+		this.ticketAvailable=tiket;
+	}
 
 	public void setSeminarSchedule(String seminarSchedule){
 		this.seminarSchedule = seminarSchedule;
@@ -162,5 +173,16 @@ public class InfoSeminarResponse implements Parcelable {
 		dest.writeInt(id);
 		dest.writeString(seminarName);
 		dest.writeInt(ticketAvailable);
+	}
+
+	public static class Entry implements BaseColumns{
+		public static final String TABLE_NAME="info_seminar";
+		public static final String COLUMN_ID="id";
+		public static final String COLUMN_NAME="seminar_name";
+		public static final String COLUMN_THEME="seminar_theme";
+		public static final String COLUMN_DESC="seminar_desc";
+		public static final String COLUMN_LOC="seminar_loc";
+		public static final String COLUMN_SCHEDULE="seminar_schedule";
+		public static final String COLUMN_TICKET="ticket_available";
 	}
 }

@@ -1,5 +1,6 @@
 package com.example.user_pc.semnas_ti.admin.infoseminar;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,6 +27,7 @@ public class InfoSeminarFragment extends Fragment implements InfoSeminarView, Vi
     private InfoSeminarPresenter presenter;
     InfoSeminarResponse seminar;
     private TextView tvSeminarName, tvSeminarTheme, tvSeminarSchedule, tvSeminarLocation, tvTicket;
+    ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -45,6 +47,9 @@ public class InfoSeminarFragment extends Fragment implements InfoSeminarView, Vi
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Now Loading");
 
         presenter = new InfoSeminarPresenter(this, ApiClient.getService(getContext()));
         presenter.infoSeminar();
@@ -72,12 +77,12 @@ public class InfoSeminarFragment extends Fragment implements InfoSeminarView, Vi
 
     @Override
     public void showLoading() {
-        Toast.makeText(getContext(), "loading", Toast.LENGTH_SHORT).show();
+        progressDialog.show();
     }
 
     @Override
     public void hideLoading() {
-        Toast.makeText(getContext(), "loaded", Toast.LENGTH_SHORT).show();
+        progressDialog.hide();
     }
 
     @Override
@@ -90,7 +95,7 @@ public class InfoSeminarFragment extends Fragment implements InfoSeminarView, Vi
             infoSeminar.setVisibility(View.VISIBLE);
             this.seminar = infoSeminarResponse;
             tvSeminarName.setText(infoSeminarResponse.getSeminarName());
-            tvSeminarTheme.setText(infoSeminarResponse.getSeminarLocation());
+            tvSeminarTheme.setText(infoSeminarResponse.getSeminarTheme());
             tvSeminarSchedule.setText(DateFormated.setDate(infoSeminarResponse.getSeminarSchedule()));
             tvSeminarLocation.setText(infoSeminarResponse.getSeminarLocation());
             tvTicket.setText(String.valueOf(infoSeminarResponse.getTicketAvailable()));

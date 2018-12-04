@@ -1,12 +1,16 @@
 package com.example.user_pc.semnas_ti.user.detailticketpayment;
 
 import android.Manifest;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +18,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -36,6 +42,7 @@ import com.example.user_pc.semnas_ti.user.ticketpayment.BayarTiketFragment;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -55,7 +62,7 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
 
     ApiService service;
 
-    private static final int IMG_REQUEST=777;
+    private static final int IMG_REQUEST = 100;
     private Bitmap bitmap;
     MultipartBody.Part body;
 
@@ -63,6 +70,8 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_ticket_payment);
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
+
         init();
         setView();
 
@@ -124,8 +133,10 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
         tvTanggalUpdate.setText(tanggalUpdate);
         if (ticketPayment.getStatus()==2){
             tvStatusPayment.setText("Terverifikasi");
+            btnDel.setVisibility(View.GONE);
         }else {
             tvStatusPayment.setText("Belum Terverifikasi");
+            btnDel.setVisibility(View.VISIBLE);
         }
     }
 
@@ -148,9 +159,9 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
     }
 
     private void selectImage() {
-        Intent intent = new Intent();
+        Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, IMG_REQUEST);
     }
 
@@ -158,28 +169,33 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode==IMG_REQUEST && resultCode==RESULT_OK&&data!=null){
-            Uri selectedImage=data.getData();
+        if (requestCode == IMG_REQUEST && resultCode == RESULT_OK && data!= null && data.getData() != null){
+            Uri selectedImage = data.getData();
+
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
                 imgPayment.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+//            Log.e("gambar","o");
 
-            String wholeID = DocumentsContract.getDocumentId(selectedImage);
+            /*String wholeID = DocumentsContract.getDocumentId(selectedImage);
+            Log.e("gambar","1");
 
             String id = wholeID.split(":")[1];
 
             String[] column = {MediaStore.Images.Media.DATA};
 
             String sel = MediaStore.Images.Media._ID+ "=?";
+            Log.e("gambar","2");
 
             Cursor cursor = getContentResolver()
                     .query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                             column, sel, new String[]{id}, null);
 
             String filePath = "";
+            Log.e("gambar",filePath);
 
             int columnIndex = cursor.getColumnIndex(column[0]);
 
@@ -188,11 +204,134 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
             }
             cursor.close();
             File file = new File(filePath);
-
             RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
 
-            body = MultipartBody.Part.createFormData("photo", file.getName(), reqFile);
+            body = MultipartBody.Part.createFormData("photo", file.getName(), reqFile);*/
+
+            String filePath = getRealPathFromURI_API19(this,selectedImage);
+            File fileImg = new File(filePath);
+
+            RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), fileImg);
+
+            body = MultipartBody.Part.createFormData("photo", fileImg.getName(), reqFile);
         }
+    }
+
+    private String getRealPathFromURI_API19(final Context context, final Uri uri) {
+
+        final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+
+        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)){
+
+            if (isExternalStorageDocument(uri)){
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                if ("primary".equalsIgnoreCase(type)){
+                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                }
+            }
+
+            else if (isDownloadsDocument(uri)){
+                Cursor cursor = null;
+
+                try {
+                    String[] s ={MediaStore.MediaColumns.DISPLAY_NAME};
+                    cursor = context.getContentResolver().query(uri,s,null,null,null);
+                    String filename = cursor.getString(0);
+                    String path = Environment.getExternalStorageDirectory().toString()+"/Download/"+filename;
+                    if (!TextUtils.isEmpty(path)){
+                        return path;
+                    }
+                }finally {
+                    cursor.close();
+                }
+
+                String id = DocumentsContract.getDocumentId(uri);
+                if (id.startsWith("raw:")){
+                    return id.replaceFirst(Pattern.quote("raw:"), "");
+                }
+                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads"), Long.valueOf(id));
+                return getDataColumn(context, contentUri, null, null);
+            }
+
+            else if (isMediaDocument(uri)){
+                final String docId = DocumentsContract.getDocumentId(uri);
+                final String[] split = docId.split(":");
+                final String type = split[0];
+
+                Uri contentUri = null;
+                if ("image".equals(type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                } else if ("video".equals(type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                } else if ("audio".equals(type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                }
+
+                final String selection = "_id=?";
+                final String[] selectionArgs = new String[]{
+                        split[1]
+                };
+
+                return getDataColumn(context, contentUri, selection, selectionArgs);
+                
+            }
+        }
+
+        else if ("content".equalsIgnoreCase(uri.getScheme())){
+            // Return the remote address
+            if (isGooglePhotosUri(uri))
+                return uri.getLastPathSegment();
+
+            return getDataColumn(context, uri, null, null);
+        }
+
+        // File
+        else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+
+        return null;
+
+    }
+
+    private String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {
+                column
+        };
+
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
+    }
+
+    private boolean isGooglePhotosUri(Uri uri) {
+        return "com.google.android.apps.photos.content".equals(uri.getAuthority());
+    }
+
+    private boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    private boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
+    }
+
+    private boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
     @Override
