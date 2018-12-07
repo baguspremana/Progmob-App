@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user_pc.semnas_ti.R;
@@ -18,6 +20,8 @@ import com.example.user_pc.semnas_ti.api.ApiClient;
 import com.example.user_pc.semnas_ti.bantuan.DbHelper;
 import com.example.user_pc.semnas_ti.model.TicketPayment;
 import com.example.user_pc.semnas_ti.user.detailticketpayment.DetailTicketPaymentActivity;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.List;
 
@@ -29,14 +33,26 @@ public class BayarTiketFragment extends Fragment implements BayarTicketAdapter.O
     private BayarTicketAdapter adapter;
     private BayarTicketPresenter presenter;
     ProgressDialog progressDialog;
+    FloatingActionMenu floatingActionMenu;
+    FloatingActionButton floatingActionButton;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_bayar_tiket, container, false);
-        rvBayarTiket = view.findViewById(R.id.rv_bayar_tiket);
+//        View view = inflater.inflate(R.layout.fragment_bayar_tiket, container, false);
+//        rvBayarTiket = view.findViewById(R.id.rv_bayar_tiket);
 
-        return view;
+        return inflater.inflate(R.layout.fragment_bayar_tiket, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        rvBayarTiket = view.findViewById(R.id.rv_bayar_tiket);
+        floatingActionMenu = view.findViewById(R.id.floatingMenuBayar);
+        floatingActionButton = view.findViewById(R.id.fab_bayar);
+
     }
 
     @Override
@@ -46,9 +62,33 @@ public class BayarTiketFragment extends Fragment implements BayarTicketAdapter.O
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Now Loading...");
 
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(getContext(), "Coba", Toast.LENGTH_SHORT).show();
+                showDialog();
+            }
+        });
+
         callPaymentTicketLocal();
         presenter = new BayarTicketPresenter(this, ApiClient.getService(getContext()));
         presenter.getPaymentTickets();
+    }
+
+    private void showDialog() {
+        final TextView tvBayar;
+
+        AlertDialog.Builder dialog;
+        dialog = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_bayar, null);
+
+        tvBayar = dialogView.findViewById(R.id.tv_cara_bayar);
+        tvBayar.setText("Pembayaran dapat dilakukan dengan transfer ke rekening BNI Atas Nama Bendahara Nomor Rekening " +
+                "xxxx-xxxxxxxx, kemudian upload bukti pembayaran pada menu bayar dengan terlebih dahulu memilih " +
+                "list tiket yang akan dibayar");
+        dialog.setView(dialogView);
+        dialog.show();
     }
 
     @Override

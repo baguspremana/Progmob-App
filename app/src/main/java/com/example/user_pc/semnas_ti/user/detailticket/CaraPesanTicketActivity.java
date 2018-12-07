@@ -2,13 +2,12 @@ package com.example.user_pc.semnas_ti.user.detailticket;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.user_pc.semnas_ti.R;
 
-import me.biubiubiu.justifytext.library.JustifyTextView;
-
 public class CaraPesanTicketActivity extends AppCompatActivity {
-    private JustifyTextView tvSatu, tvDua, tvTiga, tvEmpat;
+    private TextView tvSatu, tvDua, tvTiga, tvEmpat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

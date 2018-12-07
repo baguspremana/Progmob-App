@@ -89,6 +89,7 @@ public class DetailTicketActivity extends AppCompatActivity implements View.OnCl
         if (ticket.getStatus() == 2) {
             tvStatus.setText("Terverifikasi");
             btnDelete.setVisibility(View.GONE);
+            btnEdit.setVisibility(View.GONE);
         } else {
             tvStatus.setText("Belum Terverifikasi");
             btnDelete.setVisibility(View.VISIBLE);
