@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,9 +18,14 @@ import com.example.user_pc.semnas_ti.api.ApiClient;
 import com.example.user_pc.semnas_ti.bantuan.DbHelper;
 import com.example.user_pc.semnas_ti.model.Ticket;
 import com.example.user_pc.semnas_ti.user.addticket.AddTicketAcitivity;
+import com.example.user_pc.semnas_ti.user.detailticket.CaraPesanTicketActivity;
 import com.example.user_pc.semnas_ti.user.detailticket.DetailTicketActivity;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 public class TiketUserFragment extends Fragment implements TicketAdapter.OnClickListener, TicketView{
     List<Ticket> ticketList;
@@ -29,17 +33,30 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
     private TicketAdapter adapter;
     private TicketPresenter presenter;
     ProgressDialog progressDialog;
-    private FloatingActionButton floatingActionButton;
+//    private FloatingActionButton floatingActionButton;
+//    View view;
+    FloatingActionMenu floatingActionMenu;
+    FloatingActionButton fab1, fab2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_tiket_user, container, false);
+//        View view=inflater.inflate(R.layout.fragment_tiket_user, container, false);
+
+//        rvTicket=view.findViewById(R.id.rv_tiket);
+//        floatingActionButton=view.findViewById(R.id.fab_add_ticket);
+
+        return inflater.inflate(R.layout.fragment_tiket_user, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         rvTicket=view.findViewById(R.id.rv_tiket);
-        floatingActionButton=view.findViewById(R.id.fab_add_ticket);
-
-        return view;
+        floatingActionMenu=view.findViewById(R.id.floatingMenu);
+        fab1=view.findViewById(R.id.fab_action1);
+        fab2=view.findViewById(R.id.fab_action2);
     }
 
     @Override
@@ -49,10 +66,28 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Now Loading...");
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getContext(), AddTicketAcitivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Toast.makeText(getContext(), "Tiket", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), AddTicketAcitivity.class);
+                startActivity(intent);
+            }
+        });
+
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(getContext(), "Tanya", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), CaraPesanTicketActivity.class);
                 startActivity(intent);
             }
         });
@@ -108,12 +143,14 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
 
     @Override
     public void onError() {
-        Toast.makeText(getContext(), "Response Failed", Toast.LENGTH_SHORT).show();
+        Toasty.warning(getContext(), "Response Failed", Toast.LENGTH_SHORT, true).show();
+
     }
 
     @Override
     public void onFailure() {
-        Toast.makeText(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT).show();
+        Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
+
     }
 
     private void callTicketLocal(){

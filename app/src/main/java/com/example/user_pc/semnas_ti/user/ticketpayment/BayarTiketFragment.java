@@ -21,6 +21,8 @@ import com.example.user_pc.semnas_ti.user.detailticketpayment.DetailTicketPaymen
 
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class BayarTiketFragment extends Fragment implements BayarTicketAdapter.OnClickListener, BayarTicketView {
     List<TicketPayment> ticketPayments;
     private RecyclerView rvBayarTiket;
@@ -89,12 +91,14 @@ public class BayarTiketFragment extends Fragment implements BayarTicketAdapter.O
 
     @Override
     public void onError() {
-        Toast.makeText(getContext(), "Response Failed", Toast.LENGTH_SHORT).show();
+        Toasty.warning(getContext(), "Response Failed", Toast.LENGTH_SHORT, true).show();
+
     }
 
     @Override
     public void onFailure(Throwable t) {
-        Toast.makeText(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT).show();
+        Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
+
     }
 
     private void callPaymentTicketLocal(){

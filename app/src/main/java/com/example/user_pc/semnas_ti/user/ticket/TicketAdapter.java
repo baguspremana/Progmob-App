@@ -72,7 +72,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
 
         public void bind(Ticket ticket) {
             String bookingPrice = CurrencyFormated.toRupiah(ticket.getBookingPrice());
-            String tanggal = DateFormated.formatDate(ticket.getCreatedAt());
+            String tanggal = DateFormated.setPretty(ticket.getCreatedAt());
             tvName.setText(ticket.getBookingName());
             tvEmail.setText(ticket.getBookingEmail());
             tvPrice.setText(bookingPrice);
@@ -84,7 +84,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.ViewHolder
                 imgStatus.setImageResource(R.drawable.ic_check);
                 tvStatus.setText("Verif");
             }
-            imgTicket.setImageResource(R.drawable.ticket_tiga);
+            imgTicket.setImageResource(R.drawable.ticket_empat);
         }
     }
 

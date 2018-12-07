@@ -75,8 +75,8 @@ public class BayarTicketAdapter extends RecyclerView.Adapter<BayarTicketAdapter.
 
         public void bind(TicketPayment ticketPayment) {
             String totalHarga = CurrencyFormated.toRupiah(Integer.parseInt(ticketPayment.getTotalHarga()));
-            String tanggalPesan = DateFormated.formatDate(ticketPayment.getCreatedAt());
-            String tanggalUpdate = DateFormated.formatDate(ticketPayment.getUpdatedAt());
+            String tanggalPesan = DateFormated.setPretty(ticketPayment.getCreatedAt());
+            String tanggalUpdate = DateFormated.setPretty(ticketPayment.getUpdatedAt());
             tvJumlahTiket.setText(String.valueOf(ticketPayment.getJumlahTicket()));
             tvTotalHarga.setText(totalHarga);
             tvTanggalPesan.setText(tanggalPesan);
@@ -89,7 +89,7 @@ public class BayarTicketAdapter extends RecyclerView.Adapter<BayarTicketAdapter.
                 tvPaymentStatus.setText("Belum");
             }
 
-            imgPhoto.setImageResource(R.drawable.invoice);
+            imgPhoto.setImageResource(R.drawable.payment);
 
         }
     }

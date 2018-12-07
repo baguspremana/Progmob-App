@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.detailticket.CaraPesanTicketActivity"
+    android:background="@drawable/bg_gradient">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:id="@+id/layout_input"
+            android:background="@drawable/bg_white"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="40dp">
+
+            <TextView
+                android:text="Cara Pesan Tiket"
+                android:id="@+id/signUp"
+                android:layout_marginBottom="5dp"
+                style="@style/judul"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="5dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/nomor1"
+                    style="@style/judul"
+                    android:text="1"
+                    android:layout_centerVertical="true"/>
+
+                <me.biubiubiu.justifytext.library.JustifyTextView
+                    android:id="@+id/detail1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:text="Pesan Tiket"
+                    android:layout_toRightOf="@id/nomor1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/nomor2"
+                    style="@style/judul"
+                    android:text="2"
+                    android:layout_centerVertical="true"/>
+
+                <me.biubiubiu.justifytext.library.JustifyTextView
+                    android:id="@+id/detail2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:text="Pesan Tiket"
+                    android:layout_toRightOf="@id/nomor2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/nomor3"
+                    style="@style/judul"
+                    android:text="3"
+                    android:layout_centerVertical="true"/>
+
+                <me.biubiubiu.justifytext.library.JustifyTextView
+                    android:id="@+id/detail3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:text="Pesan Tiket"
+                    android:layout_toRightOf="@id/nomor3"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorPrimary"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/nomor4"
+                    style="@style/judul"
+                    android:text="4"
+                    android:layout_centerVertical="true"/>
+
+                <me.biubiubiu.justifytext.library.JustifyTextView
+                    android:id="@+id/detail4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:text="Pesan Tiket"
+                    android:layout_toRightOf="@id/nomor4"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -23,9 +23,8 @@ import com.example.user_pc.semnas_ti.bantuan.DbHelper;
 import com.example.user_pc.semnas_ti.bantuan.PreferencesHelper;
 import com.example.user_pc.semnas_ti.model.Profile;
 
-import java.util.Objects;
-
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class ProfileUserFragment extends Fragment implements ProfileUserView {
     protected ImageView btnLogout, btnEditProfile;
@@ -129,12 +128,13 @@ public class ProfileUserFragment extends Fragment implements ProfileUserView {
 
     @Override
     public void onError() {
-        Toast.makeText(getContext(), "Response Failed", Toast.LENGTH_SHORT).show();
+        Toasty.warning(getContext(), "Response Failed", Toast.LENGTH_SHORT, true).show();
     }
 
     @Override
     public void onFailure(Throwable t) {
-        Toast.makeText(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT).show();
+        Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
+
     }
 
     private void showProfileLocal(){

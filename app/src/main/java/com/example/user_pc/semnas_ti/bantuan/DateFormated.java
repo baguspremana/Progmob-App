@@ -1,5 +1,7 @@
 package com.example.user_pc.semnas_ti.bantuan;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -93,5 +95,19 @@ public class DateFormated {
             e.printStackTrace();
         }
         return new SimpleDateFormat("dd MMMM yyyy").format(date);
+    }
+
+    public static String setPretty(String oldDate){
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(oldDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        String prettyString;
+        PrettyTime prettyTime = new PrettyTime();
+        prettyString = prettyTime.format(date);
+        return prettyString;
     }
 }

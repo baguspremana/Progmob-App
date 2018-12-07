@@ -3,17 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
+    android:orientation="vertical"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:background="@drawable/et_bg">
+        android:padding="15dp">
 
         <ImageView
             android:id="@+id/iv_detail_payment_photo"
@@ -41,18 +40,20 @@
 
         <TextView
             android:id="@+id/tv_tanggal_pesan"
-            style="@style/tvStyle"
+            style="@style/label"
             android:text="11-11-2018"
             android:layout_toRightOf="@id/tv_total_harga"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="20dp"
+            android:layout_alignBottom="@id/tv_jumlah_ticket"/>
 
         <TextView
             android:id="@+id/tv_tanggal_update"
-            style="@style/tvStyle"
+            style="@style/label"
             android:text="11-11-2018"
             android:layout_alignStart="@id/tv_tanggal_pesan"
             android:layout_below="@id/tv_tanggal_pesan"
-            android:layout_alignTop="@id/tv_total_harga"/>
+            android:layout_alignTop="@id/tv_total_harga"
+            android:layout_alignBottom="@id/tv_total_harga"/>
 
         <LinearLayout
             android:id="@+id/bar_status"
@@ -79,5 +80,10 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
 
 </LinearLayout>

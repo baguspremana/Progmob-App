@@ -5,4 +5,7 @@
     <color name="colorAccent">#ec2F4B</color>
     <color name="white">#fff</color>
     <color name="colorDark2">#014771</color>
+
+    <color name="black_semi_transparan">#B2000000</color>
+    <color name="half_black">#808080</color>
 </resources>

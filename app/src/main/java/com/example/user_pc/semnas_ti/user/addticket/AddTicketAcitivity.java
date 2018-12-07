@@ -17,6 +17,8 @@ import com.example.user_pc.semnas_ti.model.Response;
 import com.example.user_pc.semnas_ti.user.UserActivity;
 import com.example.user_pc.semnas_ti.user.ticket.TiketUserFragment;
 
+import es.dmoral.toasty.Toasty;
+
 public class AddTicketAcitivity extends AppCompatActivity implements View.OnClickListener, AddTicketView {
 
     EditText etNama, etEmail, etContact, etInstansi;
@@ -119,16 +121,16 @@ public class AddTicketAcitivity extends AppCompatActivity implements View.OnClic
         intent.putExtra("fragment", TiketUserFragment.class);
         startActivity(intent);
         finish();
-        Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show();
+        Toasty.success(this, "Success", Toast.LENGTH_SHORT, true).show();
     }
 
     @Override
     public void OnError() {
-        Toast.makeText(this, "Response Failed", Toast.LENGTH_SHORT).show();
+        Toasty.warning(this, "Response Failed", Toast.LENGTH_SHORT, true).show();
     }
 
     @Override
     public void OnFailure(Throwable t) {
-        Toast.makeText(this, "Error"+t, Toast.LENGTH_SHORT).show();
+        Toasty.error(this, "Error", Toast.LENGTH_SHORT, true).show();
     }
 }

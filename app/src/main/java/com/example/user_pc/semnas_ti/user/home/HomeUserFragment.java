@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.example.user_pc.semnas_ti.R;
 import com.example.user_pc.semnas_ti.api.ApiClient;
@@ -19,11 +21,14 @@ import com.example.user_pc.semnas_ti.bantuan.DateFormated;
 import com.example.user_pc.semnas_ti.bantuan.DbHelper;
 import com.example.user_pc.semnas_ti.model.InfoSeminarResponse;
 
+import es.dmoral.toasty.Toasty;
+
 public class HomeUserFragment extends Fragment implements HomeUserView {
     TextView tvWaktu, tvTiket, tvTema, tvTanggal, tvLokasi;
     InfoSeminarResponse infoSeminarResponse;
     private HomeUserPresenter presenter;
     ProgressDialog progressDialog;
+    private ViewFlipper vf;
 
     @Nullable
     @Override
@@ -35,7 +40,29 @@ public class HomeUserFragment extends Fragment implements HomeUserView {
         tvTema = view.findViewById(R.id.tv_home_tema);
         tvTanggal = view.findViewById(R.id.tv_home_tanggal);
         tvLokasi = view.findViewById(R.id.tv_home_lokasi);
+        vf = view.findViewById(R.id.vf_seminar);
+
+        setflipperImage();
         return view;
+    }
+
+    private void setflipperImage() {
+        int seminar_cover[] = {R.drawable.slider, R.drawable.slider_dua, R.drawable.slider_tiga, R.drawable.slider_empat};
+        for (int aSeminar_cover: seminar_cover){
+            animFlipper(aSeminar_cover);
+        }
+    }
+
+    private void animFlipper(int img) {
+        ImageView imageView = new ImageView(getContext());
+        imageView.setBackgroundResource(img);
+
+        vf.addView(imageView);
+        vf.setFlipInterval(3500);
+        vf.setAutoStart(true);
+
+        vf.setInAnimation(getContext(), android.R.anim.slide_in_left);
+        vf.setOutAnimation(getContext(), android.R.anim.slide_out_right);
     }
 
     @Override
@@ -81,12 +108,14 @@ public class HomeUserFragment extends Fragment implements HomeUserView {
 
     @Override
     public void onError() {
-        Toast.makeText(getContext(), "Response Failed", Toast.LENGTH_SHORT).show();
+        Toasty.warning(getContext(), "Response Failed", Toast.LENGTH_SHORT, true).show();
+
     }
 
     @Override
     public void onFailure(Throwable t) {
-        Toast.makeText(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT).show();
+        Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
+
     }
 
     private void callInfoLocal(){

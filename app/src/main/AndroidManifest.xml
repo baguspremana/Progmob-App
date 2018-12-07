@@ -48,7 +48,8 @@
         <activity android:name=".auth.faquser.detailfaquser.DetailFaqUserActivity" />
         <activity android:name=".admin.scanticket.scanticketkode.ScanTicketActivity" />
         <activity android:name=".admin.scanticket.detailscanticket.DetailScanActivity" />
-        <activity android:name=".user.profile.EditProfileUserActivity"/>
+        <activity android:name=".user.profile.EditProfileUserActivity" />
+        <activity android:name=".user.detailticket.CaraPesanTicketActivity"></activity>
     </application>
 
 </manifest>

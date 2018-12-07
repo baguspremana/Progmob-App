@@ -44,6 +44,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
+import es.dmoral.toasty.Toasty;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -116,7 +117,6 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
         btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(DetailTicketPaymentActivity.this, "Test", Toast.LENGTH_SHORT).show();
                 showDialog();
             }
         });
@@ -161,7 +161,6 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
     private void selectImage() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, IMG_REQUEST);
     }
 
@@ -178,35 +177,6 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//            Log.e("gambar","o");
-
-            /*String wholeID = DocumentsContract.getDocumentId(selectedImage);
-            Log.e("gambar","1");
-
-            String id = wholeID.split(":")[1];
-
-            String[] column = {MediaStore.Images.Media.DATA};
-
-            String sel = MediaStore.Images.Media._ID+ "=?";
-            Log.e("gambar","2");
-
-            Cursor cursor = getContentResolver()
-                    .query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                            column, sel, new String[]{id}, null);
-
-            String filePath = "";
-            Log.e("gambar",filePath);
-
-            int columnIndex = cursor.getColumnIndex(column[0]);
-
-            if (cursor.moveToFirst()){
-                filePath = cursor.getString(columnIndex);
-            }
-            cursor.close();
-            File file = new File(filePath);
-            RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
-
-            body = MultipartBody.Part.createFormData("photo", file.getName(), reqFile);*/
 
             String filePath = getRealPathFromURI_API19(this,selectedImage);
             File fileImg = new File(filePath);
@@ -347,7 +317,7 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
 
                         selectImage();
                     }else {
-                        Toast.makeText(this, "permision denied", Toast.LENGTH_SHORT).show();
+                        Toasty.error(this, "Permission Denied", Toast.LENGTH_SHORT, true).show();
                     }
                     return;
                 }
@@ -368,15 +338,15 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
                             intent.putExtra("payment", BayarTiketFragment.class);
                             startActivity(intent);
                             finish();
-                            Toast.makeText(DetailTicketPaymentActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
+                            Toasty.success(DetailTicketPaymentActivity.this, "Success", Toast.LENGTH_SHORT, true).show();
                         }else {
-                            Toast.makeText(DetailTicketPaymentActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                            Toasty.warning(DetailTicketPaymentActivity.this, "Response Failed", Toast.LENGTH_SHORT, true).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Response> call, Throwable t) {
-                        Toast.makeText(DetailTicketPaymentActivity.this, "Error"+t, Toast.LENGTH_SHORT).show();
+                        Toasty.error(DetailTicketPaymentActivity.this, "Error", Toast.LENGTH_SHORT, true).show();
                     }
                 });
     }
@@ -405,15 +375,15 @@ public class DetailTicketPaymentActivity extends AppCompatActivity {
                                     intent.putExtra("payment", BayarTiketFragment.class);
                                     startActivity(intent);
                                     finish();
-                                    Toast.makeText(DetailTicketPaymentActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
+                                    Toasty.success(DetailTicketPaymentActivity.this, "Success", Toast.LENGTH_SHORT, true).show();
                                 }else {
-                                    Toast.makeText(DetailTicketPaymentActivity.this, "Response Failed", Toast.LENGTH_SHORT).show();
+                                    Toasty.warning(DetailTicketPaymentActivity.this, "Response Failed", Toast.LENGTH_SHORT, true).show();
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<Response> call, Throwable t) {
-                                Toast.makeText(DetailTicketPaymentActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                                Toasty.error(DetailTicketPaymentActivity.this, "Error", Toast.LENGTH_SHORT, true).show();
                             }
                         });
             }

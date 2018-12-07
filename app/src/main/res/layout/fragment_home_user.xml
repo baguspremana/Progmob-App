@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingtoolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:contentScrim="?attr/colorPrimary"
-            app:title="App Title"
-            app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp"
-            android:background="@drawable/bg_gradient">
+            android:fitsSystemWindows="true"
+            app:titleEnabled="true">
+
+            <ViewFlipper
+                android:id="@+id/vf_seminar"
+                android:layout_width="match_parent"
+                android:layout_height="220dp">
+
+            </ViewFlipper>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbarid"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"/>
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="top"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -48,7 +55,42 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@drawable/et_bg"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/user_icon"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    style="@style/label"
+                    android:text="Tema Seminar"
+                    android:layout_gravity="center_horizontal"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_home_tema"
+                    style="@style/tvStyle"
+                    android:text="Test"
+                    android:layout_gravity="center_horizontal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -104,7 +146,7 @@
                     <TextView
                         android:layout_marginTop="5dp"
                         style="@style/label"
-                        android:text=" Jumlah Tiket "
+                        android:text=" Tiket Tersedia "
                         android:layout_gravity="center_horizontal"/>
 
                     <View
@@ -135,48 +177,13 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/user_icon"
-                    android:layout_gravity="center_horizontal"/>
-
-                <TextView
-                    android:layout_marginTop="5dp"
-                    style="@style/label"
-                    android:text="Tema Seminar"
-                    android:layout_gravity="center_horizontal"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorPrimary"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"/>
-
-                <TextView
-                    android:id="@+id/tv_home_tema"
-                    style="@style/tvStyle"
-                    android:text="Test"
-                    android:layout_gravity="center_horizontal"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/et_bg"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:padding="10dp">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
                     android:src="@drawable/icon_calendar"
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_marginTop="5dp"
                     style="@style/label"
-                    android:text="Pelaksanaan Seminar"
+                    android:text="Tanggal Seminar"
                     android:layout_gravity="center_horizontal"/>
 
                 <View
@@ -201,7 +208,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
-                android:layout_marginBottom="25dp">
+                android:layout_marginBottom="40dp">
 
                 <ImageView
                     android:layout_width="50dp"
