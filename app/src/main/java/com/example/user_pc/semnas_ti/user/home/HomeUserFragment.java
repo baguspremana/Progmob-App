@@ -72,7 +72,6 @@ public class HomeUserFragment extends Fragment implements HomeUserView {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Now Loading...");
 
-        callInfoLocal();
         presenter = new HomeUserPresenter(this, ApiClient.getService(getContext()));
         presenter.infoSeminar();
     }
@@ -115,7 +114,7 @@ public class HomeUserFragment extends Fragment implements HomeUserView {
     @Override
     public void onFailure(Throwable t) {
         Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
-
+        callInfoLocal();
     }
 
     private void callInfoLocal(){

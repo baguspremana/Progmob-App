@@ -70,7 +70,6 @@ public class BayarTiketFragment extends Fragment implements BayarTicketAdapter.O
             }
         });
 
-        callPaymentTicketLocal();
         presenter = new BayarTicketPresenter(this, ApiClient.getService(getContext()));
         presenter.getPaymentTickets();
     }
@@ -138,7 +137,7 @@ public class BayarTiketFragment extends Fragment implements BayarTicketAdapter.O
     @Override
     public void onFailure(Throwable t) {
         Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
-
+        callPaymentTicketLocal();
     }
 
     private void callPaymentTicketLocal(){

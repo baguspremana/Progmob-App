@@ -92,7 +92,6 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
             }
         });
 
-        callTicketLocal();
         presenter = new TicketPresenter(this, ApiClient.getService(getContext()));
         presenter.getTickets();
 
@@ -144,13 +143,12 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
     @Override
     public void onError() {
         Toasty.warning(getContext(), "Response Failed", Toast.LENGTH_SHORT, true).show();
-
     }
 
     @Override
     public void onFailure() {
         Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
-
+        callTicketLocal();
     }
 
     private void callTicketLocal(){

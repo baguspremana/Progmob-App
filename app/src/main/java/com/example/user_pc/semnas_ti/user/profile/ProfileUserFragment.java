@@ -65,7 +65,6 @@ public class ProfileUserFragment extends Fragment implements ProfileUserView {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Now Loading...");
 
-        showProfileLocal();
         presenter = new ProfileUserPresenter(this, ApiClient.getService(getContext()));
         presenter.showProfile();
 
@@ -134,7 +133,7 @@ public class ProfileUserFragment extends Fragment implements ProfileUserView {
     @Override
     public void onFailure(Throwable t) {
         Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
-
+        showProfileLocal();
     }
 
     private void showProfileLocal(){

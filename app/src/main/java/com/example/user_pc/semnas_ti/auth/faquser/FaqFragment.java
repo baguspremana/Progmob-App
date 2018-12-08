@@ -26,6 +26,8 @@ import com.example.user_pc.semnas_ti.model.FaqUserResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class FaqFragment extends Fragment implements FaqAdapter.OnClickListener, FaqView{
     List<FaqUserResponse> faqUserResponses=new ArrayList<>();
     private RecyclerView rvFaq;
@@ -52,7 +54,6 @@ public class FaqFragment extends Fragment implements FaqAdapter.OnClickListener,
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Now Loading...");
 
-        callFAQLocal();
         presenter = new FaqPresenter(this, ApiClient.getService(getContext()));
         presenter.showFaqUser();
     }
@@ -117,12 +118,13 @@ public class FaqFragment extends Fragment implements FaqAdapter.OnClickListener,
 
     @Override
     public void onError() {
-        Toast.makeText(getContext(), "Response Failed", Toast.LENGTH_SHORT).show();
+        Toasty.warning(getContext(), "Response Failed", Toast.LENGTH_SHORT, true).show();
     }
 
     @Override
     public void onFailure() {
-        Toast.makeText(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT).show();
+        Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
+        callFAQLocal();
     }
 
     private void callFAQLocal(){
