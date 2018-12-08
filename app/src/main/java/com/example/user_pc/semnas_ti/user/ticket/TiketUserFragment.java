@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.user_pc.semnas_ti.R;
 import com.example.user_pc.semnas_ti.api.ApiClient;
 import com.example.user_pc.semnas_ti.bantuan.DbHelper;
+import com.example.user_pc.semnas_ti.model.InfoSeminarResponse;
 import com.example.user_pc.semnas_ti.model.Ticket;
 import com.example.user_pc.semnas_ti.user.addticket.AddTicketAcitivity;
 import com.example.user_pc.semnas_ti.user.detailticket.CaraPesanTicketActivity;
@@ -26,26 +27,23 @@ import com.github.clans.fab.FloatingActionMenu;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TiketUserFragment extends Fragment implements TicketAdapter.OnClickListener, TicketView{
     List<Ticket> ticketList;
     private RecyclerView rvTicket;
     private TicketAdapter adapter;
     private TicketPresenter presenter;
+    private InfoSeminarResponse infoSeminarResponse;
     ProgressDialog progressDialog;
-//    private FloatingActionButton floatingActionButton;
-//    View view;
     FloatingActionMenu floatingActionMenu;
     FloatingActionButton fab1, fab2;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        View view=inflater.inflate(R.layout.fragment_tiket_user, container, false);
-
-//        rvTicket=view.findViewById(R.id.rv_tiket);
-//        floatingActionButton=view.findViewById(R.id.fab_add_ticket);
-
         return inflater.inflate(R.layout.fragment_tiket_user, container, false);
     }
 
@@ -66,18 +64,9 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Now Loading...");
 
-//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), AddTicketAcitivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(getContext(), "Tiket", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), AddTicketAcitivity.class);
                 startActivity(intent);
             }
@@ -86,7 +75,6 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(getContext(), "Tanya", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), CaraPesanTicketActivity.class);
                 startActivity(intent);
             }
@@ -94,6 +82,31 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
 
         presenter = new TicketPresenter(this, ApiClient.getService(getContext()));
         presenter.getTickets();
+
+        ApiClient.getService(getContext())
+                .infoSeminar()
+                .enqueue(new Callback<InfoSeminarResponse>() {
+                    @Override
+                    public void onResponse(Call<InfoSeminarResponse> call, Response<InfoSeminarResponse> response) {
+                        if (response.isSuccessful()){
+                            infoSeminarResponse = response.body();
+                            if (infoSeminarResponse.getTicketAvailable()==0){
+                                fab1.setVisibility(View.GONE);
+                            }
+                        }else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<InfoSeminarResponse> call, Throwable t) {
+                        DbHelper dbHelper = new DbHelper(getContext());
+                        infoSeminarResponse = dbHelper.selectInfo();
+                        if (infoSeminarResponse.getTicketAvailable()==0){
+                            fab1.setVisibility(View.GONE);
+                        }
+                    }
+                });
 
     }
 
@@ -149,6 +162,7 @@ public class TiketUserFragment extends Fragment implements TicketAdapter.OnClick
     public void onFailure() {
         Toasty.error(getContext(), "Anda Sedang Offline", Toast.LENGTH_SHORT, true).show();
         callTicketLocal();
+        fab1.setVisibility(View.GONE);
     }
 
     private void callTicketLocal(){
